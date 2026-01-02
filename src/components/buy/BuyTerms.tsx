@@ -55,7 +55,7 @@ const BuyTerms = () => (
         </div>
       </div>
 
-      {/* <div className="iframe-ipoteka-domclick">
+      <div className="iframe-ipoteka-domclick">
         <iframe
           id="calculator-iframe"
           src="https://ipoteka.domclick.ru/calc-reg/calculator.html?excludedSubproductIds=7&excludedSubproductIds=33&excludedSubproductIds=34&excludeMaternalFund=true"
@@ -64,7 +64,7 @@ const BuyTerms = () => (
           width="100%"
           height="1200"
         ></iframe>
-      </div> */}
+      </div>
 
       <div className="buy_how animate animated">
         <div className="buy_how__l">

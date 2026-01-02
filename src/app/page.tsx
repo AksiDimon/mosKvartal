@@ -30,7 +30,7 @@ const Page = () => {
 
       <div className="scroll-top-button hidden-block" id="js-scroll-top">
         <div className="icon-wrapper">
-          <img src="../assets/icon-scroll.svg" alt="icon-wrapper" />
+          <img src="/assets/icon-scroll.svg" alt="icon-wrapper" />
         </div>
       </div>
     </>
