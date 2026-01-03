@@ -1,4 +1,5 @@
 'use client';
+import { useRef } from 'react';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import styles from './BuySection.module.css';
 
@@ -81,6 +82,18 @@ const BuyBanners = () => {
     useScrollReveal<HTMLDivElement>();
   const { ref: termsRef, isRevealed: isTermsVisible } =
     useScrollReveal<HTMLDivElement>();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleVideoEnter = () => {
+    videoRef.current?.play();
+  };
+
+  const handleVideoLeave = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
 
   return (
     <div className={`${styles.buy_terms} uk-container-xlarge`}>
@@ -92,6 +105,8 @@ const BuyBanners = () => {
       >
         <div
           className={`${styles['-pos6']} ${styles['-no_link']} ${styles['-with-video']}`}
+          onMouseEnter={handleVideoEnter}
+          onMouseLeave={handleVideoLeave}
         >
           <div>
             <div className={styles.buy_top__title}>Двор</div>
@@ -109,13 +124,17 @@ const BuyBanners = () => {
               <br />
             </div>
           </div>
-          <div className={styles.buy_top__img}>
+          <div
+            className={styles.buy_top__img}
+            // onMouseEnter={handleVideoEnter}
+            // onMouseLeave={handleVideoLeave}
+          >
             <video
               muted
               loop
-              autoPlay
-              poster="../assets/yard.mp4"
+              poster="../assets/image.png"
               preload="auto"
+              ref={videoRef}
             >
               <source src="../assets/yard.mp4" type="video/mp4" />
             </video>
@@ -123,7 +142,9 @@ const BuyBanners = () => {
         </div>
 
         <div className={styles['-pos5']}>
-          <div className={styles.buy_top__title}>Безбарьерная среда</div>
+          <div className={styles.buy_top__title} style={{ color: '#4d4f53' }}>
+            Безбарьерная среда
+          </div>
           <img
             className={styles.buy_top__img}
             src="./assets/bottom3.webp"
