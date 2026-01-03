@@ -448,7 +448,7 @@
 }
 
 .buy_how__t {
-  color: white;
+  /* color: white; */
     font-size: 36px;
     font-weight: 700;
     line-height: 1;
@@ -457,7 +457,7 @@
 
 @media only screen and (max-width: 1920px) and (min-width: 1001px) {
   .buy_how__t {
-    font-size: calc(24 / 1920 * 100vw);
+    font-size: 1.8vw;
   }
 }
 
