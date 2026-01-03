@@ -1,12 +1,8 @@
 .buy_link_det {
-  display: inline-flex;
+ display: inline-flex; 
   gap: 10px;
-  align-items: center;
-  justify-content: center;
-  color: #4d4f53;
+  color: #E90002;
   font-size: 16px;
-  font-weight: 700;
-  line-height: 120%;
   letter-spacing: -0.03em;
   text-decoration: none;
   transition: opacity 0.3s;
@@ -32,17 +28,18 @@
 }
 
 .buy_link_det i {
-  min-width: 12px;
+  min-width: 8px;
   height: 8px;
   display: block;
   background: url(/assets/forward.svg) center center no-repeat;
   background-size: contain;
+  transform: translateY(3px);
 }
 
 @media only screen and (max-width: 1920px) and (min-width: 1001px) {
   .buy_link_det i {
     min-width: calc(12 / 1920 * 100vw);
-    height: calc(8 / 1920 * 100vw);
+    /* height: calc(8 / 1920 * 100vw); */
   }
 }
 
@@ -106,7 +103,7 @@
 }
 
 .buy_terms__top.animated .buy_terms__top_l,
-.buy_terms__top.animated .buy_how__r {
+.buy_terms__top.animated .buy_terms__top_r {
   transform: none;
   opacity: 1;
 }
@@ -256,6 +253,7 @@
   opacity: 0;
   transform: translateX(50px);
   transition: transform 1s, opacity 1s;
+  background-color: #e90002;
 }
 
 @media only screen and (max-width: 1920px) and (min-width: 1001px) {
@@ -340,7 +338,7 @@
 }
 
 .buy_how.animated .buy_how__l,
-.buy_how.animated .buy_how__r {
+.buy_how.animated .buy_terms__top_r {
   transform: none;
   opacity: 1;
 }
@@ -423,11 +421,11 @@
 }
 
 .buy_how__t {
-  color: #4d4f53;
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 100%;
-  letter-spacing: -0.03em;
+  color: white;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.03em;
 }
 
 @media only screen and (max-width: 1920px) and (min-width: 1001px) {
@@ -442,10 +440,19 @@
   }
 }
 
-.buy_how__banks {
+
+.buy_how__banks > a {
   display: flex;
   align-items: center;
-  gap: 12px;
+  margin-bottom: 12px;
+  display: flex;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid #FFF;
+    text-decoration: none;
+    transition: background-color 0.3s, border-color 0.3s, opacity 0.3s;
 }
 
 .buy_how__banks img {
@@ -465,8 +472,17 @@
   }
 }
 
+@media (hover: hover) and (pointer: fine) {
+    .buy_how__banks > a:hover {
+        text-decoration: none;
+        background-color: #4D4F53;
+        border-color: #4D4F53;
+        opacity: 0.7;
+    }
+}
+
 .buy_how__text {
-  color: #4f4f4f;
+  color: white;
   font-size: 16px;
   line-height: 140%;
 }
@@ -913,7 +929,6 @@
   padding-top: 100px;
   justify-content: center;
   position: relative;
-  padding-bottom: 120px;
 }
 
 @media only screen and (max-width: 1000px) {

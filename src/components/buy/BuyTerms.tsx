@@ -1,6 +1,7 @@
 'use client';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import styles from './BuySection.module.css';
+import styleD from './digits.module.css';
 
 const BuyTerms = () => (
   <>
@@ -77,7 +78,7 @@ const BuyTermsTop = () => {
           />
         </div>
       </div>
-      <div className={styles.buy_how__r}>
+      <div className={styles.buy_terms__top_r}>
         <div className={styles.buy_how__t}>Рассчитать ипотеку</div>
         <div className={styles.buy_how__banks}>
           <a
@@ -116,63 +117,86 @@ const BuyHow = () => {
       <div className={styles.buy_how__l}>
         <div className={styles.buy_how__t}>Как купить в ипотеку?</div>
 
-        <div className={styles.buy_how__digs}>
+        {/* DIGITS */}
+        <div className={styleD.buy_how__digs}>
           <div
-            className={`${styles.buy_how__dig} ${styles.active}`}
+            className={`${styleD.buy_how__dig} ${styleD.active}`}
             data-id="1"
           >
             <span>Выбор и осмотр объекта</span>
           </div>
-          <div className={styles.buy_how__sep}></div>
-          <div className={styles.buy_how__dig} data-id="2">
+
+          <div className={styleD.buy_how__sep} />
+
+          <div className={styleD.buy_how__dig} data-id="2">
             <span>Одобрение в&nbsp;банке</span>
           </div>
-          <div className={styles.buy_how__sep}></div>
+
+          <div className={styleD.buy_how__sep} />
+
           <div
-            className={`${styles.buy_how__dig} ${styles['with-comment']}`}
+            className={`${styleD.buy_how__dig} ${styleD['with-comment']}`}
             data-id="3"
           >
-            <span> Оформление ЭЦП </span>
+            <span>Оформление ЭЦП</span>
           </div>
-          <div className={styles.buy_how__sep}></div>
-          <div className={styles.buy_how__dig} data-id="4">
+
+          <div className={styleD.buy_how__sep} />
+
+          <div className={styleD.buy_how__dig} data-id="4">
             <span>Регистрация на&nbsp;торговой площадке</span>
           </div>
-          <div className={styles.buy_how__sep}></div>
-          <div className={styles.buy_how__dig} data-id="5">
+
+          <div className={styleD.buy_how__sep} />
+
+          <div className={styleD.buy_how__dig} data-id="5">
             <span>Подача заявки на&nbsp;участие в&nbsp;аукционе</span>
           </div>
-          <div className={styles.buy_how__sep}></div>
-          <div className={styles.buy_how__dig} data-id="6">
+
+          <div className={styleD.buy_how__sep} />
+
+          <div className={styleD.buy_how__dig} data-id="6">
             <span>Участие в&nbsp;аукционе</span>
           </div>
-          <div className={styles.buy_how__sep}></div>
-          <div className={styles.buy_how__dig} data-id="7">
+
+          <div className={styleD.buy_how__sep} />
+
+          <div className={styleD.buy_how__dig} data-id="7">
             <span>Предоставление данных</span>
           </div>
-          <div className={styles.buy_how__sep}></div>
-          <div className={styles.buy_how__dig} data-id="8">
+
+          <div className={styleD.buy_how__sep} />
+
+          <div className={styleD.buy_how__dig} data-id="8">
             <span>Оценка недвижимости</span>
           </div>
-          <div className={styles.buy_how__sep}></div>
-          <div className={styles.buy_how__dig} data-id="9">
+
+          <div className={styleD.buy_how__sep} />
+
+          <div className={styleD.buy_how__dig} data-id="9">
             <span>Согласование даты сделки</span>
           </div>
-          <div className={styles.buy_how__sep}></div>
-          <div className={styles.buy_how__dig} data-id="10">
+
+          <div className={styleD.buy_how__sep} />
+
+          <div className={styleD.buy_how__dig} data-id="10">
             <span>Заключение и&nbsp;оплата договора</span>
           </div>
-          <div className={styles.buy_how__sep}></div>
-          <div className={styles.buy_how__dig} data-id="11">
+
+          <div className={styleD.buy_how__sep} />
+
+          <div className={styleD.buy_how__dig} data-id="11">
             <span>Регистрация права собственности и&nbsp;получение ключей</span>
           </div>
         </div>
 
+        {/* STEPS */}
         <div className={styles.buy_how__steps}>
           <div>
             <div className={styles.buy_how__step}>
               Шаг <span>1</span>
             </div>
+
             <div className={styles.buy_how__val}>
               <div data-id="1">Выбор и осмотр объекта</div>
               <div data-id="2" style={{ display: 'none' }}>
@@ -207,17 +231,18 @@ const BuyHow = () => {
               </div>
             </div>
           </div>
+
           <a
             href="/pokupka-nedvizhimosti-dlya-vseh/uslovia-pokupki/#buy_mortgage"
             className={styles.buy_link_det}
           >
             <span>Подробнее</span>
-            <i></i>
+            <i />
           </a>
         </div>
       </div>
 
-      <div className={styles.buy_how__r}>
+      <div className={styles.buy_terms__top_r}>
         <div className={styles.buy_how__t}>Рассчитать ипотеку</div>
         <div className={styles.buy_how__banks}>
           <a
