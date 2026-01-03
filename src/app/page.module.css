@@ -1,0 +1,41 @@
+.page {
+  padding-top: 100px;
+}
+
+@media (max-width: 1000px) {
+  .page {
+    padding-top: 54px;
+  }
+}
+
+@media (max-width: 1920px) and (min-width: 1001px) {
+  .page h1 {
+    font-size: 1.5625vw;
+  }
+}
+
+.page .page-title__det {
+  margin: 0;
+}
+
+.page-title {
+  position: relative;
+  margin: auto;
+}
+
+.page-title__det {
+}
+
+.scroll-helper {
+  position: fixed;
+  bottom: 100px;
+  left: 0;
+}
+
+.scroll-top-button {
+}
+
+.icon-wrapper {
+  background-color: #ffffff;
+  border-radius: 50%;
+}

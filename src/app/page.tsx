@@ -5,6 +5,7 @@ import FlatCard from '../components/flat/FlatCard';
 import Footer from '../components/layout/Footer';
 import Header from '../components/layout/Header';
 import MobileMenu from '../components/layout/MobileMenu';
+import styles from './page.module.css';
 
 const Page = () => {
   return (
@@ -13,9 +14,9 @@ const Page = () => {
       <MobileMenu />
       <Header />
 
-      <main className="page uk-overflow-hidden open_obj_page">
+      <main className={`${styles.page} uk-overflow-hidden open_obj_page`}>
         <Breadcrumbs />
-        <div className="page-title uk-container uk-container-xlarge">
+        <div className={`${styles['page-title']} uk-container uk-container-xlarge`}>
           <h1>3-я Прядильная ул., влд. 4</h1>
         </div>
 
@@ -23,13 +24,13 @@ const Page = () => {
         <BuyFinish />
         <BuyTerms />
 
-        <div className="scroll-helper"></div>
+        <div className={styles['scroll-helper']}></div>
       </main>
 
       <Footer />
 
       <div className="scroll-top-button hidden-block" id="js-scroll-top">
-        <div className="icon-wrapper">
+        <div className={styles['icon-wrapper']}>
           <img src="/assets/icon-scroll.svg" alt="icon-wrapper" />
         </div>
       </div>

@@ -1,6 +1,8 @@
 'use client';
 
 import { MouseEvent } from 'react';
+import pageStyles from '../../app/page.module.css';
+import styles from './FlatCard.module.css';
 import { printPage, scrollToElement } from '../../lib/dom';
 
 const FlatCard = () => {
@@ -11,10 +13,15 @@ const FlatCard = () => {
 
   return (
     <>
-      <div className="page-title uk-container uk-container-xlarge">
-        <div className="page-title__det">
-          <div className="title_buts">
-            <div className="title_but -print" onClick={printPage}>
+      <div
+        className={`${pageStyles['page-title']} uk-container uk-container-xlarge`}
+      >
+        <div className={pageStyles['page-title__det']}>
+          <div className={styles.title_buts}>
+            <div
+              className={`${styles.title_but} ${styles['-print']}`}
+              onClick={printPage}
+            >
               <i></i>
               <span>Распечатать</span>
             </div>
@@ -22,27 +29,27 @@ const FlatCard = () => {
         </div>
       </div>
       <div className="uk-container uk-container-xlarge">
-        <div className="flat-card">
-          <div className="flat-card__image">
-            <div className="det_bl_tab_contents">
-              <div className="det_bl_tab_content" data-id="1">
-                <div className="det_bl_plan reserve">
+        <div className={styles['flat-card']}>
+          <div className={styles['flat-card__image']}>
+            <div className={styles.det_bl_tab_contents}>
+              <div className={styles.det_bl_tab_content} data-id="1">
+                <div className={`${styles.det_bl_plan} reserve`}>
                   <img
                     src="../assets/hi8vz4jggj7utowsho6fdf0badsmmpob.png"
                     alt="plan"
                     title="plan"
                   />
-                  <div className="icon-lock">
+                  <div className={styles['icon-lock']}>
                     <img src="../assets/lock.svg" alt="lock.svg" />
                   </div>
                 </div>
               </div>
               <div
-                className="det_bl_tab_content"
+                className={styles.det_bl_tab_content}
                 data-id="2"
                 style={{ display: 'none' }}
               >
-                <div className="det_bl_plan">
+                <div className={styles.det_bl_plan}>
                   <img
                     src="../assets/s7bhtd8958vsglbo4c05wijevnz5ox9l.jpg"
                     alt="plan"
@@ -51,11 +58,11 @@ const FlatCard = () => {
                 </div>
               </div>
               <div
-                className="det_bl_tab_content"
+                className={styles.det_bl_tab_content}
                 data-id="3"
                 style={{ display: 'none' }}
               >
-                <div className="det_bl_plan">
+                <div className={styles.det_bl_plan}>
                   <img
                     src="../assets/v2zuwzj16d1gcno3ysjkuquemghdk4rl.jpg"
                     alt="plan"
@@ -64,44 +71,50 @@ const FlatCard = () => {
                 </div>
               </div>
             </div>
-            <div className="det_bl_tabs">
-              <div className="det_bl_tab active" data-id="1">
+            <div className={styles.det_bl_tabs}>
+              <div
+                className={`${styles.det_bl_tab} ${styles.active}`}
+                data-id="1"
+              >
                 <i></i>
                 <span>Планировка</span>
               </div>
-              <div className="det_bl_tab" data-id="2">
+              <div className={styles.det_bl_tab} data-id="2">
                 <i></i>
                 <span>Этаж</span>
               </div>
-              <div className="det_bl_tab" data-id="3">
+              <div className={styles.det_bl_tab} data-id="3">
                 <i></i>
                 <span>Вид из&nbsp;окна</span>
               </div>
             </div>
           </div>
-          <div className="flat-card__info">
-            <div className="title_address">
-              <div className="text">
+          <div className={styles['flat-card__info']}>
+            <div className={styles.title_address}>
+              <div className={styles.text}>
                 <span>
                   1 комн.&nbsp;&nbsp;&nbsp;39.4 м
                   <sup>
                     <small>2</small>
                   </sup>
                 </span>
-                <div className="det_bl_l_title">
+                <div className={styles.det_bl_l_title}>
                   1 корп.&nbsp;/&nbsp; № 31 &nbsp;/&nbsp;8 этаж
                 </div>
               </div>
-              <div className="js-det-fav-but title_but -fav" data-id="92793">
+              <div
+                className={`js-det-fav-but ${styles.title_but} ${styles['-fav']}`}
+                data-id="92793"
+              >
                 <i></i>
               </div>
             </div>
-            <div className="name">
+            <div className={styles.name}>
               ВАО, Измайлово, 3-я Прядильная ул., влд. 4
             </div>
-            <div className="metro">
-              <div className="pageCard-adress-lock-item">
-                <div className="pageCard-adress-lock-img">
+            <div className={styles.metro}>
+              <div className={styles['pageCard-adress-lock-item']}>
+                <div className={styles['pageCard-adress-lock-img']}>
                   <div>
                     <svg
                       width="14"
@@ -112,7 +125,7 @@ const FlatCard = () => {
                     >
                       <rect width="14" height="14" rx="7" fill="#0072BA"></rect>
                     </svg>
-                    <div className="pageCard-adress-lock-img-text">
+                    <div className={styles['pageCard-adress-lock-img-text']}>
                       Измайловская
                     </div>
                   </div>
@@ -129,7 +142,9 @@ const FlatCard = () => {
                         fill="#E90002"
                       ></path>
                     </svg>
-                    <div className="pageCard-adress-lock-img-text">15 мин.</div>
+                    <div className={styles['pageCard-adress-lock-img-text']}>
+                      15 мин.
+                    </div>
                   </div>
                   <div>
                     <svg
@@ -144,34 +159,36 @@ const FlatCard = () => {
                         fill="#E90002"
                       ></path>
                     </svg>
-                    <div className="pageCard-adress-lock-img-text">11 мин.</div>
+                    <div className={styles['pageCard-adress-lock-img-text']}>
+                      11 мин.
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="det_bl_l_advs">
-              <div className="det_bl_l_advs__label">Особенности:</div>
-              <div className="det_bl_l_advs__tag">без аукциона</div>
-              <div className="det_bl_l_advs__tag">с отделкой</div>
+            <div className={styles.det_bl_l_advs}>
+              <div className={styles.det_bl_l_advs__label}>Особенности:</div>
+              <div className={styles.det_bl_l_advs__tag}>без аукциона</div>
+              <div className={styles.det_bl_l_advs__tag}>с отделкой</div>
             </div>
-            <div className="det_bl_l_p">
+            <div className={styles.det_bl_l_p}>
               <span>Ипотека:</span>
               <span>Стандартная, семейная</span>
             </div>
-            <div className="det_bl_l_p">
+            <div className={styles.det_bl_l_p}>
               <span>Условия покупки:</span>
               <span>Забронировано</span>
             </div>
-            <div className="det_bl_l_p">
+            <div className={styles.det_bl_l_p}>
               <span>Доступно для бронирования:</span>
               <span>до 15.02.2026</span>
             </div>
-            <div className="det_bl_l_p">
+            <div className={styles.det_bl_l_p}>
               <span>Артикул:</span>
               <span>212926</span>
             </div>
-            <div className="det_bl_l_pr_flex">
-              <div className="det_bl_l_pr">
+            <div className={styles.det_bl_l_pr_flex}>
+              <div className={styles.det_bl_l_pr}>
                 <div className="object-total-price" data-value="13896619">
                   13 896 619 ₽
                 </div>
@@ -180,24 +197,26 @@ const FlatCard = () => {
                 </div>
               </div>
               <div
-                className="discount"
+                className={styles.discount}
                 data-price="12720932"
                 data-discount="8.46"
               >
-                <div className="block">
-                  <div className="discount-title">Акция:</div>
-                  <div className="discount-text">Скидка 8.46%</div>
+                <div className={styles.block}>
+                  <div className={styles['discount-title']}>Акция:</div>
+                  <div className={styles['discount-text']}>Скидка 8.46%</div>
                 </div>
-                <div className="block">
-                  <div className="discount-switch">
-                    <span className="switch">
+                <div className={styles.block}>
+                  <div className={styles['discount-switch']}>
+                    <span className={styles.switch}>
                       <span></span>
                     </span>
                   </div>
-                  <div className="discount-switch-text">Рассчитать скидку</div>
+                  <div className={styles['discount-switch-text']}>
+                    Рассчитать скидку
+                  </div>
                 </div>
-                <div className="block">
-                  <div className="after-discount-text d-none">
+                <div className={styles.block}>
+                  <div className={`${styles['after-discount-text']} d-none`}>
                     Скидка действительна при
                     <br />
                     100% оплате и ипотеке
@@ -205,18 +224,18 @@ const FlatCard = () => {
                 </div>
               </div>
             </div>
-            <div className="no_det_print det_bl_buy__btns">
+            <div className={`no_det_print ${styles.det_bl_buy__btns}`}>
               <a
                 href="https://msk.widget.hart-estate.ru/beta/?id=71869567-c940-4161-970f-0b6c49ee9b07"
                 target="_blank"
-                className="det_bl_buy__btn"
+                className={styles.det_bl_buy__btn}
               >
                 <span>3D тур 360</span>
               </a>
             </div>
-            <div className="no_det_print det_bl_buy__btns">
+            <div className={`no_det_print ${styles.det_bl_buy__btns}`}>
               <a
-                className="det_bl_buy__btn"
+                className={styles.det_bl_buy__btn}
                 href="#"
                 onClick={handleScrollClick}
               >
@@ -226,30 +245,37 @@ const FlatCard = () => {
                 </span>
               </a>
             </div>
-            <div className="no_det_print det_bl_buy__btn -dis">
+            <div
+              className={`no_det_print ${styles.det_bl_buy__btn} ${styles['-dis']}`}
+            >
               <span>Забронировано</span>
             </div>
           </div>
         </div>
-        <div className="flat-card__mobile">
-          <div className="title_address">
-            <div className="text">
+        <div className={styles['flat-card__mobile']}>
+          <div className={styles.title_address}>
+            <div className={styles.text}>
               1 комн.,&nbsp;39.4 м
               <sup>
                 <small>2</small>
               </sup>
             </div>
-            <div className="js-det-fav-but title_but -fav" data-id="92793">
+            <div
+              className={`js-det-fav-but ${styles.title_but} ${styles['-fav']}`}
+              data-id="92793"
+            >
               <i></i>
             </div>
           </div>
-          <div className="name">ВАО, Измайлово, 3-я Прядильная ул., влд. 4</div>
-          <div className="det_bl_l_title">
+          <div className={styles.name}>
+            ВАО, Измайлово, 3-я Прядильная ул., влд. 4
+          </div>
+          <div className={styles.det_bl_l_title}>
             1 корп.&nbsp;/&nbsp; № 31 &nbsp;/&nbsp;8 этаж
           </div>
-          <div className="metro">
-            <div className="pageCard-adress-lock-item">
-              <div className="pageCard-adress-lock-img">
+          <div className={styles.metro}>
+            <div className={styles['pageCard-adress-lock-item']}>
+              <div className={styles['pageCard-adress-lock-img']}>
                 <div>
                   <svg
                     width="14"
@@ -260,7 +286,7 @@ const FlatCard = () => {
                   >
                     <rect width="14" height="14" rx="7" fill="#0072BA"></rect>
                   </svg>
-                  <div className="pageCard-adress-lock-img-text">
+                  <div className={styles['pageCard-adress-lock-img-text']}>
                     Измайловская
                   </div>
                 </div>
@@ -277,7 +303,9 @@ const FlatCard = () => {
                       fill="#E90002"
                     ></path>
                   </svg>
-                  <div className="pageCard-adress-lock-img-text">15 мин.</div>
+                  <div className={styles['pageCard-adress-lock-img-text']}>
+                    15 мин.
+                  </div>
                 </div>
                 <div>
                   <svg
@@ -292,12 +320,14 @@ const FlatCard = () => {
                       fill="#E90002"
                     ></path>
                   </svg>
-                  <div className="pageCard-adress-lock-img-text">11 мин.</div>
+                  <div className={styles['pageCard-adress-lock-img-text']}>
+                    11 мин.
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="det_bl_l_pr">
+          <div className={styles.det_bl_l_pr}>
             <div className="object-total-price" data-value="13896619">
               13 896 619 ₽
             </div>
@@ -305,46 +335,52 @@ const FlatCard = () => {
               352 706 ₽/м2
             </div>
           </div>
-          <div className="discount" data-price="12720932" data-discount="8.46">
-            <div className="block">
-              <div className="discount-title">Акция:</div>
-              <div className="discount-text">Скидка 8.46%</div>
+          <div
+            className={styles.discount}
+            data-price="12720932"
+            data-discount="8.46"
+          >
+            <div className={styles.block}>
+              <div className={styles['discount-title']}>Акция:</div>
+              <div className={styles['discount-text']}>Скидка 8.46%</div>
             </div>
-            <div className="block">
-              <div className="discount-switch">
-                <span className="switch">
+            <div className={styles.block}>
+              <div className={styles['discount-switch']}>
+                <span className={styles.switch}>
                   <span></span>
                 </span>
               </div>
-              <div className="discount-switch-text">Рассчитать скидку</div>
+              <div className={styles['discount-switch-text']}>
+                Рассчитать скидку
+              </div>
             </div>
-            <div className="block">
-              <div className="after-discount-text d-none">
+            <div className={styles.block}>
+              <div className={`${styles['after-discount-text']} d-none`}>
                 Скидка действительна при
                 <br />
                 100% оплате и ипотеке
               </div>
             </div>
           </div>
-          <div className="det_bl_tab_contents">
-            <div className="det_bl_tab_content" data-id="1">
-              <div className="det_bl_plan reserve">
+          <div className={styles.det_bl_tab_contents}>
+            <div className={styles.det_bl_tab_content} data-id="1">
+              <div className={`${styles.det_bl_plan} reserve`}>
                 <img
                   src="../assets/hi8vz4jggj7utowsho6fdf0badsmmpob.png"
                   alt="plan"
                   title="plan"
                 />
-                <div className="icon-lock">
+                <div className={styles['icon-lock']}>
                   <img src="../assets/lock.svg" alt="lock.svg" />
                 </div>
               </div>
             </div>
             <div
-              className="det_bl_tab_content"
+              className={styles.det_bl_tab_content}
               data-id="2"
               style={{ display: 'none' }}
             >
-              <div className="det_bl_plan">
+              <div className={styles.det_bl_plan}>
                 <a
                   href="/assets/s7bhtd8958vsglbo4c05wijevnz5ox9l.jpg"
                   data-fancybox
@@ -357,11 +393,11 @@ const FlatCard = () => {
               </div>
             </div>
             <div
-              className="det_bl_tab_content"
+              className={styles.det_bl_tab_content}
               data-id="3"
               style={{ display: 'none' }}
             >
-              <div className="det_bl_plan">
+              <div className={styles.det_bl_plan}>
                 <img
                   src="../assets/v2zuwzj16d1gcno3ysjkuquemghdk4rl.jpg"
                   alt="plan"
@@ -370,61 +406,70 @@ const FlatCard = () => {
               </div>
             </div>
           </div>
-          <div className="det_bl_tabs">
-            <div className="det_bl_tab active" data-id="1">
+          <div className={styles.det_bl_tabs}>
+            <div
+              className={`${styles.det_bl_tab} ${styles.active}`}
+              data-id="1"
+            >
               <i></i>
               <span>Планировка</span>
             </div>
-            <div className="det_bl_tab" data-id="2">
+            <div className={styles.det_bl_tab} data-id="2">
               <i></i>
               <span>Этаж</span>
             </div>
-            <div className="det_bl_tab" data-id="3">
+            <div className={styles.det_bl_tab} data-id="3">
               <i></i>
               <span>Вид из&nbsp;окна</span>
             </div>
           </div>
-          <div className="det_bl_l_advs">
-            <div className="det_bl_l_advs__label">Особенности:</div>
-            <div className="det_bl_l_advs_in">
+          <div className={styles.det_bl_l_advs}>
+            <div className={styles.det_bl_l_advs__label}>Особенности:</div>
+            <div className={styles.det_bl_l_advs_in}>
               <div>без аукциона</div>
               <div>с отделкой</div>
             </div>
           </div>
-          <div className="det_bl_l_p">
+          <div className={styles.det_bl_l_p}>
             <span>Ипотека:</span>
             <span>Стандартная, семейная</span>
           </div>
-          <div className="det_bl_l_p">
+          <div className={styles.det_bl_l_p}>
             <span>Условия покупки:</span>
             <span>Забронировано</span>
           </div>
-          <div className="det_bl_l_p">
+          <div className={styles.det_bl_l_p}>
             <span>Доступно для бронирования:</span>
             <span>до 15.02.2026</span>
           </div>
-          <div className="det_bl_l_p">
+          <div className={styles.det_bl_l_p}>
             <span>Артикул:</span>
             <span>212926</span>
           </div>
-          <div className="no_det_print det_bl_buy__btns">
+          <div className={`no_det_print ${styles.det_bl_buy__btns}`}>
             <a
               href="https://msk.widget.hart-estate.ru/beta/?id=71869567-c940-4161-970f-0b6c49ee9b07"
               target="_blank"
-              className="det_bl_buy__btn"
+              className={styles.det_bl_buy__btn}
             >
               <span>3D тур 360</span>
             </a>
           </div>
-          <div className="no_det_print det_bl_buy__btns">
-            <a className="det_bl_buy__btn" href="#" onClick={handleScrollClick}>
+          <div className={`no_det_print ${styles.det_bl_buy__btns}`}>
+            <a
+              className={styles.det_bl_buy__btn}
+              href="#"
+              onClick={handleScrollClick}
+            >
               Выбрать условия по ипотеке
               <span>
                 <img src="/assets/forward.svg" alt="forward.svg" />
               </span>
             </a>
           </div>
-          <div className="no_det_print det_bl_buy__btn -dis">
+          <div
+            className={`no_det_print ${styles.det_bl_buy__btn} ${styles['-dis']}`}
+          >
             <span>Забронировано</span>
           </div>
         </div>
