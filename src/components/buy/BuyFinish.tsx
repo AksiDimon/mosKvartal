@@ -98,6 +98,7 @@ const BuyFinish = () => (
             </div>
             <div className="buy_top__img">
               <img
+                style={{ width: '100%', objectFit: 'contain', height: '100%' }}
                 className="buy_top__img"
                 data-lazy="../assets/t2_v2.jpg"
                 src="../assets/t2_v2.jpg"
