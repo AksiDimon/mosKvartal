@@ -6,6 +6,38 @@
   letter-spacing: -0.03em;
   text-decoration: none;
   transition: opacity 0.3s;
+  border: 1.5px solid #E90002;
+}
+
+.buy_how__steps .buy_link_det {
+    padding: 10px 30px;
+    border-radius: 10px;
+    border: 1.5px solid #E90002;
+    min-height: 62px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 212px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+@media only screen and (max-width: 1920px) and (min-width: 1001px) {
+    .buy_how__steps .buy_link_det {
+        padding: calc(10 / 1920 * 100vw) calc(30 / 1920 * 100vw);
+        border-radius: calc(10 / 1920 * 100vw);
+        min-height: calc(62 / 1920 * 100vw);
+        min-width: calc(212 / 1920 * 100vw);
+    }
+}
+@media only screen and (max-width: 1000px) {
+  .buy_link_det {
+    font-size: calc(12 / 375 * 100vw);
+    gap: calc(10 / 375 * 100vw);
+    padding: 0 calc(20 / 375 * 100vw) calc(2 / 375 * 100vw) calc(20 / 375 * 100vw);
+    border-radius: calc(5 / 375 * 100vw);
+    min-height: calc(40 / 375 * 100vw);
+    min-width: unset;
+  }
 }
 
 @media only screen and (max-width: 1680px) and (min-width: 1001px) {
@@ -14,12 +46,7 @@
   }
 }
 
-@media only screen and (max-width: 1000px) {
-  .buy_link_det {
-    font-size: calc(14 / 375 * 100vw);
-    gap: calc(10 / 375 * 100vw);
-  }
-}
+
 
 @media (hover: hover) and (pointer: fine) {
   .buy_link_det:hover {
@@ -571,10 +598,10 @@
 
 .buy_how__steps {
   display: flex;
-  align-items: center;
-  gap: 20px;
+  flex-direction: column;
+  gap: 90px;
   width: 100%;
-  justify-content: space-between;
+ 
 }
 
 @media only screen and (max-width: 1000px) {
@@ -613,10 +640,16 @@
   display: block;
 }
 
-.buy_how__val > div:not(:first-child) {
+/* .buy_how__val > div:not(:first-child) {
   display: none;
-}
+} */
 
+/* .buttonDetails{
+  border: 1px solid #CC0605;
+  border-radius: calc(10 / 1920 * 100vw);
+  padding: 10px 14px;
+  display: inline-block;
+} */
 @media only screen and (max-width: 1920px) and (min-width: 1001px) {
   .buy_how__val {
     font-size: calc(24 / 1920 * 100vw);
@@ -947,7 +980,7 @@
 @media only screen and (max-width: 1920px) and (min-width: 1001px) {
   .buy_finish {
     padding-top: calc(100 / 1920 * 100vw);
-    padding-bottom: calc(120 / 1920 * 100vw);
+    /* padding-bottom: calc(120 / 1920 * 100vw); */
   }
 }
 

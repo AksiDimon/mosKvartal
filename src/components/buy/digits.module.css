@@ -185,3 +185,57 @@
 .with-comment {
   position: relative;
 }
+
+
+
+
+
+/* ====== SLIDE (old goes up, new comes from bottom) ====== */
+
+.stepSlideRun {}
+
+.stepSlideItem {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  transform: translateY(0);
+  transition: transform 320ms ease;
+  will-change: transform;
+}
+
+/* состояние ДО старта анимации */
+.stepSlidePrev {
+  transform: translateY(0);
+}
+
+.stepSlideCurrent {
+  transform: translateY(100%);
+}
+
+/* состояние ВО ВРЕМЯ анимации */
+.stepSlideRun .stepSlidePrev {
+  transform: translateY(-100%);
+}
+
+.stepSlideRun .stepSlideCurrent {
+  transform: translateY(0);
+}
+
+/* viewport для большого текста (buy_how__val) */
+.stepSlideViewportVal {
+  position: relative;
+  overflow: hidden;
+  /* важно: зафиксировать высоту, иначе будет прыгать */
+  height: 1.15em;
+}
+
+/* viewport для номера (span внутри "Шаг") */
+.stepSlideViewportNum {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  height: 1em;
+  width: 2ch;           /* чтобы не прыгало при 1/10/11 */
+  vertical-align: baseline;
+}
