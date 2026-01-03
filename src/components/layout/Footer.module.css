@@ -26,6 +26,9 @@
   .footer-colum.wrap {
     padding-right: 50px;
   }
+  .footer-colum.wrap {
+    font-size: 18px;
+}
 }
 
 .footer-colum.wrap:last-child {
@@ -185,6 +188,12 @@
   padding-right: 30px;
   padding-bottom: 60px;
   display: none;
+}
+
+@media (max-width: 1000px) {
+  .footer-mob {
+    display: block;
+  }
 }
 
 .footer-mob-a {
@@ -439,6 +448,10 @@
 
 .footer-right-info {
   text-align: right;
+}
+
+.mobLink{
+  text-decoration: none;
 }
 
 .footer-right-info > .title {

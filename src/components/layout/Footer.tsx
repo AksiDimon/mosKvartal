@@ -6,7 +6,10 @@ const Footer = () => (
     <div className={styles['footer-wrap']}>
       <div className={`${styles['footer-colum']} ${styles.wrap}`}>
         <div className={styles['footer-colum']}>
-          <a href="/o-moskovskikh-kvartalakh/" className={styles['footer-a-main']}>
+          <a
+            href="/o-moskovskikh-kvartalakh/"
+            className={styles['footer-a-main']}
+          >
             О «Московских кварталах»
           </a>
 
@@ -50,25 +53,25 @@ const Footer = () => (
 
     <div className={styles['footer-mob']}>
       <div className={styles['footer-mob-a']}>
-        <a href="/o-moskovskikh-kvartalakh/" className="">
+        <a href="/o-moskovskikh-kvartalakh/" className={styles.mobLink}>
           О «Московских кварталах»
         </a>
-        <a href="/kvartiry/" className="">
+        <a href="/kvartiry/" className={styles.mobLink}>
           Квартиры
         </a>
-        <a href="/pomeshcheniya-dlya-biznesa/" className="">
+        <a href="/pomeshcheniya-dlya-biznesa/" className={styles.mobLink}>
           Помещения для бизнеса
         </a>
-        <a href="/mashino-mesta/" className="">
+        <a href="/mashino-mesta/" className={styles.mobLink}>
           Машино-места
         </a>
-        <a href="/usloviya-pokupki/" className="">
+        <a href="/usloviya-pokupki/" className={styles.mobLink}>
           Условия покупки
         </a>
-        <a href="/news/" className="">
+        <a href="/news/" className={styles.mobLink}>
           Новости
         </a>
-        <a href="/kontakty/" className="">
+        <a href="/kontakty/" className={styles.mobLink}>
           Контакты
         </a>
       </div>
@@ -89,7 +92,10 @@ const Footer = () => (
               <a href="https://yandex.ru/maps/-/CHXcQ6OI" target="_blank">
                 101000, Малый Златоустинский пер., д. 3, стр. 3
               </a>
-              <a className={styles['footer-mail']} href="mailto:info@москварталы.рф">
+              <a
+                className={styles['footer-mail']}
+                href="mailto:info@москварталы.рф"
+              >
                 info@москварталы.рф
               </a>
             </div>

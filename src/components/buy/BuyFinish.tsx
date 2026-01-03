@@ -124,11 +124,7 @@ const BuyBanners = () => {
               <br />
             </div>
           </div>
-          <div
-            className={styles.buy_top__img}
-            // onMouseEnter={handleVideoEnter}
-            // onMouseLeave={handleVideoLeave}
-          >
+          <div className={styles.buy_top__img}>
             <video
               muted
               loop
