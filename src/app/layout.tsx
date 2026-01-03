@@ -1,6 +1,13 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
+import { Montserrat } from 'next/font/google';
+
+const montserrat = Montserrat({
+  subsets: ['latin', 'cyrillic'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+});
 // export const metadata: Metadata = {
 //   metadataBase: new URL('https://xn--80aae5aibotfo5h.xn--p1ai'),
 //   title: 'Московские кварталы 2025',
@@ -70,7 +77,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className="renova no-left-margin detail_page">{children}</body>
+      <body
+        // className="renova no-left-margin detail_page"
+        className={montserrat.className}
+      >
+        {children}
+      </body>
     </html>
   );
 }

@@ -90,8 +90,8 @@
 
 @media only screen and (max-width: 1000px) {
   .buy_terms {
-    width: calc(100% - 40 / 375 * 100vw);
-    margin: calc(60 / 375 * 100vw) calc(20 / 375 * 100vw);
+    /* width: calc(100% - 40 / 375 * 100vw); */
+    /* margin: calc(60 / 375 * 100vw) calc(20 / 375 * 100vw); */
   }
 
   .buy_terms .buy_top {
@@ -448,7 +448,7 @@
 }
 
 .buy_how__t {
-  /* color: white; */
+  color: white;
     font-size: 36px;
     font-weight: 700;
     line-height: 1;
@@ -1045,6 +1045,7 @@
 
 .buy_finish__main-text-wrap {
   padding-right: 60px;
+  padding-left: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1063,6 +1064,7 @@
 @media only screen and (max-width: 1920px) and (min-width: 1001px) {
   .buy_finish__main-text-wrap {
     padding-right: calc(60 / 1920 * 100vw);
+    padding-left: calc(60 / 1920 * 100vw);;
   }
 }
 
@@ -1076,9 +1078,9 @@
 
 .buy_finish__main-text-wrap .buy_finish__main-text-tl {
   color: black;
-  font-size: 36px;
+  font-size: 20px;
   font-weight: 700;
-  line-height: 100%;
+  line-height: 150%;
   letter-spacing: -1.08px;
 }
 
@@ -1090,7 +1092,7 @@
 
 @media only screen and (max-width: 1000px) {
   .buy_finish__main-text-wrap .buy_finish__main-text-tl {
-    font-size: calc(20 / 375 * 100vw);
+    font-size: calc(18 / 375 * 100vw);
     letter-spacing: -1.08px;
   }
 }
@@ -1115,12 +1117,12 @@
 .buy_finish__main-text-tx {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 26px;
   margin-top: 30px;
   color: #4f4f4f;
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 400;
-  line-height: 120%;
+  line-height: 150%;
   letter-spacing: -0.48px;
 }
 
@@ -1241,7 +1243,7 @@
   transform: translateX(-50px);
   width: 840px;
   min-width: 840px;
-  height: 540px;
+  height: 420px;
   /* border-radius: 0px;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px; */
@@ -1282,10 +1284,10 @@
 
 .-wide {}
 
-.buy_finish__main .buy_finish__main-text-wrap {
+/* .buy_finish__main .buy_finish__main-text-wrap {
   max-width: 800px;
   padding: 10px 50px 10px 50px;
-}
+} */
 
 .banners {
   position: relative;

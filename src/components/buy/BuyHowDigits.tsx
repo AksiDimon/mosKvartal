@@ -67,7 +67,9 @@ const BuyHowDigits = () => {
       }`}
     >
       <div className={styles.buy_how__l}>
-        <div className={styles.buy_how__t}>Как купить в ипотеку?</div>
+        <div className={styles.buy_how__t} style={{ color: '#4d4f53' }}>
+          Как купить в ипотеку?
+        </div>
 
         {/* DIGITS */}
         <div className={styleD.buy_how__digs}>
@@ -84,13 +86,13 @@ const BuyHowDigits = () => {
                   }
                 }}
                 data-id={s.id}
-                className={[
-                  styleD.buy_how__dig,
-                  s.id === activeId ? styleD.active : '',
-                  s.withComment ? styleD['with-comment'] : '',
-                ].join(' ')}
+              className={[
+                styleD.buy_how__dig,
+                s.id === activeId ? styleD.active : '',
+                s.withComment ? styleD['with-comment'] : '',
+              ].join(' ')}
               >
-                <span>{s.title.replace(' *', '')}</span>
+                <span className={styleD.titleRed}>{s.title.replace(' *', '')}</span>
               </div>
 
               {idx < STEPS.length - 1 && (
@@ -128,11 +130,11 @@ const BuyHowDigits = () => {
 
             <div className={styles.buy_how__val}>
               <div
-                className={[
-                  styles.stepSlideViewportVal,
-                  phase === 'run' ? styles.stepSlideRun : '',
-                ].join(' ')}
-              >
+              className={[
+                styles.stepSlideViewportVal,
+                phase === 'run' ? styles.stepSlideRun : '',
+              ].join(' ')}
+            >
                 {/* {prevId !== null && (
                   <div
                     className={`${styles.stepSlideItem} ${styles.stepSlidePrev}`}
@@ -141,7 +143,7 @@ const BuyHowDigits = () => {
                   </div>
                 )} */}
                 <div
-                  className={`${styles.stepSlideItem} ${styles.stepSlideCurrent}`}
+                  className={`${styles.stepSlideItem} ${styles.stepSlideCurrent} ${styleD.titleRed}`}
                 >
                   {currentTitle}
                 </div>

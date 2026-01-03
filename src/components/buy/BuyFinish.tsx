@@ -110,7 +110,7 @@ const BuyBanners = () => {
         >
           <div>
             <div className={styles.buy_top__title}>Двор</div>
-            <div className={styles.buy_top__text}>
+            <div className={styles.buy_top__text} style={{ color: 'white' }}>
               детские площадки: 1 <br />
               спортивные площадки: 1 <br />
               площадки для отдыха: 1 <br />
@@ -152,7 +152,9 @@ const BuyBanners = () => {
         >
           <div className={styles.buy_top__title}>
             Колясочная
-            <div className={styles.buy_top__text}>Удобства для каждого</div>
+            <div className={styles.buy_top__text} style={{ color: 'white' }}>
+              Удобства для каждого
+            </div>
           </div>
           <div className={styles.buy_top__img}>
             <img

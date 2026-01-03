@@ -403,6 +403,7 @@
   font-size: 18px;
   line-height: 1.2;
   color: #4d4f53;
+  background-color: #fff;
   transition: color 0.3s, background-color 0.3s, border-color 0.3s;
 }
 
@@ -468,6 +469,12 @@
 }
 
 .no-touch .det_bl_tab:hover {
+  color: #fff;
+  border-color: #e90002;
+  background-color: #e90002;
+}
+
+.det_bl_tab:hover {
   color: #fff;
   border-color: #e90002;
   background-color: #e90002;
@@ -840,66 +847,157 @@
 }
 
 .flat-card .flat-card__info .det_bl_l_pr_flex > div {
-  width: 50%;
+  width: 100%;
 }
 
 .flat-card .flat-card__info .det_bl_l_pr {
   margin: 20px 0 0 0;
 }
 
-.flat-card .flat-card__info .discount .block {
+.priceBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 28px;
+  margin: 20px 0 0 0;
+}
+
+/* @media(width <= 540px) {
+  .priceBlock {
+    flex-direction: column;
+  }
+} */
+
+
+
+.priceBlock .left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.price {
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+  color: #4a4a4a;
+  letter-spacing: -0.02em;
+}
+
+@media only screen and (max-width: 1920px) and (min-width: 900px) {
+  .price {
+    font-size: calc(34 / 1920 * 100vw);
+    font-weight: 500;
+    color: black;
+  }
+}
+
+.priceSub {
+  font-size: 22px;
+  line-height: 1.1;
+  color: #9aa0a6;
+  white-space: nowrap;
+}
+
+@media (width <= 900px) {
+  .price{
+    font-size: calc(80 / 1920 * 100vw);
+  }
+  .priceSub {
+    /* font-size: 22px; */
+    font-size: calc(60 / 1920 * 100vw);
+  }
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding-top: 6px;
+  min-width: 260px;
+}
+
+.saleRow {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  font-size: 16px;
+  line-height: 1.1;
+}
+
+.saleLabel {
+  color: #6b6b6b;
+}
+
+.saleValue {
+  color: #2e7d32;
+  font-weight: 800;
+}
+
+.discountToggle {
+  display: inline-flex;
   align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
 }
 
-.flat-card .flat-card__info .discount .block > div {
-  font-size: 14px;
+.discountToggle input {
+  display: none;
 }
 
-.flat-card .flat-card__info .discount .block > .discount-switch > .switch {
+.toggleSlider {
   height: 26px;
-  width: 40px;
+  width: 44px;
   border: 1px solid #969696;
   border-radius: 26px;
-  display: flex;
-  justify-content: flex-start;
+  display: inline-flex;
   align-items: center;
+  padding: 2px;
+  transition: 0.3s;
+  box-sizing: border-box;
+}
+
+.toggleSlider::before {
+  content: '';
+  display: block;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: #969696;
   transition: 0.3s;
 }
 
-.flat-card .flat-card__info .discount .block > .discount-switch > .switch span {
-  display: flex;
-  height: 26px;
-  width: 26px;
-  border-radius: 50%;
-  background-color: #969696;
-  cursor: pointer;
+.toggleSliderActive {
+  border-color: #00a516;
 }
 
-.flat-card .flat-card__info .discount .block > .active > .switch {
-  justify-content: flex-end;
-  border: 1px solid #00a516;
-}
-
-.flat-card .flat-card__info .discount .block > .active > .switch span {
+.toggleSliderActive::before {
+  transform: translateX(18px);
   background-color: #00a516;
 }
 
-.flat-card
-  .flat-card__info
-  .discount
-  .block
-  > .active
-  > .discount-switch-text {
-  font-weight: 600;
+.toggleLabel {
+  font-size: 16px;
+  line-height: 1.1;
+  color: #6b6b6b;
 }
 
-.flat-card
-  .flat-card__info
-  .discount
-  .block
-  > .active
-  > .after-discount-text {
-  font-size: 16px;
+.discountNote {
+  font-size: 14px;
+  color: #4d4f53;
+  line-height: 1.3;
+}
+
+@media(width <= 520px) {
+  .toggleLabel{
+    font-size: calc(44 / 1920 * 100vw);
+  }
+  .saleLabel{
+    font-size: calc(44 / 1920 * 100vw);
+  }
 }
 
 @media (max-width: 1920px) and (min-width: 1001px) {

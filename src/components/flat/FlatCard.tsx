@@ -1,11 +1,38 @@
 'use client';
 
-import { MouseEvent } from 'react';
+import Image from 'next/image';
+import { MouseEvent, useMemo, useState } from 'react';
 import pageStyles from '../../app/page.module.css';
 import styles from './FlatCard.module.css';
 import { printPage, scrollToElement } from '../../lib/dom';
 
 const FlatCard = () => {
+  const mediaOptions = useMemo(
+    () => [
+      {
+        key: 'plan',
+        label: 'Планировка',
+        src: '/assets/hi8vz4jggj7utowsho6fdf0badsmmpob.png',
+      },
+      {
+        key: 'floor',
+        label: 'Этаж',
+        src: '/assets/s7bhtd8958vsglbo4c05wijevnz5ox9l.jpg',
+      },
+      {
+        key: 'view',
+        label: 'Вид из окна',
+        src: '/assets/v2zuwzj16d1gcno3ysjkuquemghdk4rl.jpg',
+      },
+    ],
+    []
+  );
+  const [activeKey, setActiveKey] = useState(mediaOptions[0].key);
+  const [discountApplied, setDiscountApplied] = useState(false);
+
+  const activeMedia =
+    mediaOptions.find((option) => option.key === activeKey) ?? mediaOptions[0];
+
   const handleScrollClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     scrollToElement('calculator-iframe');
@@ -32,61 +59,43 @@ const FlatCard = () => {
         <div className={styles['flat-card']}>
           <div className={styles['flat-card__image']}>
             <div className={styles.det_bl_tab_contents}>
-              <div className={styles.det_bl_tab_content} data-id="1">
-                <div className={`${styles.det_bl_plan} reserve`}>
-                  <img
-                    src="../assets/hi8vz4jggj7utowsho6fdf0badsmmpob.png"
-                    alt="plan"
-                    title="plan"
-                  />
-                  <div className={styles['icon-lock']}>
-                    <img src="../assets/lock.svg" alt="lock.svg" />
-                  </div>
-                </div>
-              </div>
-              <div
-                className={styles.det_bl_tab_content}
-                data-id="2"
-                style={{ display: 'none' }}
-              >
-                <div className={styles.det_bl_plan}>
-                  <img
-                    src="../assets/s7bhtd8958vsglbo4c05wijevnz5ox9l.jpg"
-                    alt="plan"
-                    title="plan"
-                  />
-                </div>
-              </div>
-              <div
-                className={styles.det_bl_tab_content}
-                data-id="3"
-                style={{ display: 'none' }}
-              >
-                <div className={styles.det_bl_plan}>
-                  <img
-                    src="../assets/v2zuwzj16d1gcno3ysjkuquemghdk4rl.jpg"
-                    alt="plan"
-                    title="plan"
-                  />
+              <div className={styles.det_bl_tab_content}>
+                <div
+                  className={`${styles.det_bl_plan} ${
+                    activeKey === 'plan' ? 'reserve' : ''
+                  }`}
+                >
+                  <img src={activeMedia.src} alt={activeMedia.label} title="plan" />
+                  {activeKey === 'plan' && (
+                    <div className={styles['icon-lock']}>
+                      <img src="../assets/lock.svg" alt="lock.svg" />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
             <div className={styles.det_bl_tabs}>
-              <div
-                className={`${styles.det_bl_tab} ${styles.active}`}
-                data-id="1"
-              >
-                <i></i>
-                <span>Планировка</span>
-              </div>
-              <div className={styles.det_bl_tab} data-id="2">
-                <i></i>
-                <span>Этаж</span>
-              </div>
-              <div className={styles.det_bl_tab} data-id="3">
-                <i></i>
-                <span>Вид из&nbsp;окна</span>
-              </div>
+              {mediaOptions.map((option) => (
+                <button
+                  key={option.key}
+                  type="button"
+                  className={`${styles.det_bl_tab} ${
+                    activeKey === option.key ? styles.active : ''
+                  }`}
+                  onClick={() => setActiveKey(option.key)}
+                >
+                  {activeKey === option.key && (
+                    <Image
+                      className={styles.tabIcon}
+                      src="/assets/check-white.svg"
+                      alt=""
+                      width={15}
+                      height={10}
+                    />
+                  )}
+                  <span>{option.label}</span>
+                </button>
+              ))}
             </div>
           </div>
           <div className={styles['flat-card__info']}>
@@ -188,41 +197,47 @@ const FlatCard = () => {
               <span>212926</span>
             </div>
             <div className={styles.det_bl_l_pr_flex}>
-              <div className={styles.det_bl_l_pr}>
-                <div className="object-total-price" data-value="13896619">
-                  13 896 619 ₽
+            <div className={styles.priceBlock}>
+              <div className={styles.left}>
+                <div className={styles.price}>
+                  {discountApplied ? '12 720 932 ₽' : '13 896 619 ₽'}
                 </div>
-                <div className="object-m2-price" data-value="352706">
-                  352 706 ₽/м2
+                <div className={styles.priceSub}>
+                  {discountApplied ? '322 867 ₽/м²' : '352 706 ₽/м²'}
                 </div>
               </div>
-              <div
-                className={styles.discount}
-                data-price="12720932"
-                data-discount="8.46"
-              >
-                <div className={styles.block}>
-                  <div className={styles['discount-title']}>Акция:</div>
-                  <div className={styles['discount-text']}>Скидка 8.46%</div>
+              <div className={styles.right}>
+                <div className={styles.saleRow}>
+                  <span className={styles.saleLabel}>
+                    {discountApplied ? 'Скидка применена:' : 'Акция:'}
+                  </span>
+                  <strong className={styles.saleValue}>
+                    {discountApplied ? '8.46%' : 'Скидка 8.46%'}
+                  </strong>
                 </div>
-                <div className={styles.block}>
-                  <div className={styles['discount-switch']}>
-                    <span className={styles.switch}>
-                      <span></span>
-                    </span>
-                  </div>
-                  <div className={styles['discount-switch-text']}>
-                    Рассчитать скидку
-                  </div>
-                </div>
-                <div className={styles.block}>
-                  <div className={`${styles['after-discount-text']} d-none`}>
-                    Скидка действительна при
-                    <br />
+
+                <label className={styles.discountToggle}>
+                  <input
+                    type="checkbox"
+                    checked={discountApplied}
+                    onChange={() => setDiscountApplied((v) => !v)}
+                  />
+                  <span
+                    className={`${styles.toggleSlider} ${
+                      discountApplied ? styles.toggleSliderActive : ''
+                    }`}
+                    aria-hidden
+                  />
+                  <span className={styles.toggleLabel}>Рассчитать скидку</span>
+                </label>
+                {discountApplied && (
+                  <div className={styles.discountNote}>
+                    Скидка действительна при <br />
                     100% оплате и ипотеке
                   </div>
-                </div>
+                )}
               </div>
+            </div>
             </div>
             <div className={`no_det_print ${styles.det_bl_buy__btns}`}>
               <a
@@ -327,101 +342,76 @@ const FlatCard = () => {
               </div>
             </div>
           </div>
-          <div className={styles.det_bl_l_pr}>
-            <div className="object-total-price" data-value="13896619">
-              13 896 619 ₽
+          <div className={styles.priceBlock}>
+            <div className={styles.left}>
+              <div className={styles.price}>
+                {discountApplied ? '12 720 932 ₽' : '13 896 619 ₽'}
+              </div>
+              <div className={styles.priceSub}>
+                {discountApplied ? '322 867 ₽/м²' : '352 706 ₽/м²'}
+              </div>
             </div>
-            <div className="object-m2-price" data-value="352706">
-              352 706 ₽/м2
-            </div>
-          </div>
-          <div
-            className={styles.discount}
-            data-price="12720932"
-            data-discount="8.46"
-          >
-            <div className={styles.block}>
-              <div className={styles['discount-title']}>Акция:</div>
-              <div className={styles['discount-text']}>Скидка 8.46%</div>
-            </div>
-            <div className={styles.block}>
-              <div className={styles['discount-switch']}>
-                <span className={styles.switch}>
-                  <span></span>
+            <div className={styles.right}>
+              <div className={styles.saleRow}>
+                <span className={styles.saleLabel}>
+                  {discountApplied ? 'Скидка применена:' : 'Акция:'}
                 </span>
+                <strong className={styles.saleValue}>
+                  {discountApplied ? '8.46%' : 'Скидка 8.46%'}
+                </strong>
               </div>
-              <div className={styles['discount-switch-text']}>
-                Рассчитать скидку
-              </div>
-            </div>
-            <div className={styles.block}>
-              <div className={`${styles['after-discount-text']} d-none`}>
-                Скидка действительна при
-                <br />
-                100% оплате и ипотеке
-              </div>
+
+              <label className={styles.discountToggle}>
+                <input
+                  type="checkbox"
+                  checked={discountApplied}
+                  onChange={() => setDiscountApplied((v) => !v)}
+                />
+                <span
+                  className={`${styles.toggleSlider} ${
+                    discountApplied ? styles.toggleSliderActive : ''
+                  }`}
+                  aria-hidden
+                />
+                <span className={styles.toggleLabel}>Рассчитать скидку</span>
+              </label>
+              {discountApplied && (
+                <div className={styles.discountNote}>
+                  Скидка действительна при <br />
+                  100% оплате и ипотеке
+                </div>
+              )}
             </div>
           </div>
           <div className={styles.det_bl_tab_contents}>
-            <div className={styles.det_bl_tab_content} data-id="1">
-              <div className={`${styles.det_bl_plan} reserve`}>
-                <img
-                  src="../assets/hi8vz4jggj7utowsho6fdf0badsmmpob.png"
-                  alt="plan"
-                  title="plan"
-                />
-                <div className={styles['icon-lock']}>
-                  <img src="../assets/lock.svg" alt="lock.svg" />
-                </div>
-              </div>
-            </div>
-            <div
-              className={styles.det_bl_tab_content}
-              data-id="2"
-              style={{ display: 'none' }}
-            >
-              <div className={styles.det_bl_plan}>
-                <a
-                  href="/assets/s7bhtd8958vsglbo4c05wijevnz5ox9l.jpg"
-                  data-fancybox
-                ></a>
-                <img
-                  src="/assets/s7bhtd8958vsglbo4c05wijevnz5ox9l.jpg"
-                  alt="plan"
-                  title="plan"
-                />
-              </div>
-            </div>
-            <div
-              className={styles.det_bl_tab_content}
-              data-id="3"
-              style={{ display: 'none' }}
-            >
-              <div className={styles.det_bl_plan}>
-                <img
-                  src="../assets/v2zuwzj16d1gcno3ysjkuquemghdk4rl.jpg"
-                  alt="plan"
-                  title="plan"
-                />
+            <div className={styles.det_bl_tab_content}>
+              <div
+                className={`${styles.det_bl_plan} ${
+                  activeKey === 'plan' ? 'reserve' : ''
+                }`}
+              >
+                <img src={activeMedia.src} alt={activeMedia.label} title="plan" />
+                {activeKey === 'plan' && (
+                  <div className={styles['icon-lock']}>
+                    <img src="../assets/lock.svg" alt="lock.svg" />
+                  </div>
+                )}
               </div>
             </div>
           </div>
           <div className={styles.det_bl_tabs}>
-            <div
-              className={`${styles.det_bl_tab} ${styles.active}`}
-              data-id="1"
-            >
-              <i></i>
-              <span>Планировка</span>
-            </div>
-            <div className={styles.det_bl_tab} data-id="2">
-              <i></i>
-              <span>Этаж</span>
-            </div>
-            <div className={styles.det_bl_tab} data-id="3">
-              <i></i>
-              <span>Вид из&nbsp;окна</span>
-            </div>
+            {mediaOptions.map((option) => (
+              <button
+                key={option.key}
+                type="button"
+                className={`${styles.det_bl_tab} ${
+                  activeKey === option.key ? styles.active : ''
+                }`}
+                onClick={() => setActiveKey(option.key)}
+              >
+                <span>{option.label}</span>
+              </button>
+            ))}
           </div>
           <div className={styles.det_bl_l_advs}>
             <div className={styles.det_bl_l_advs__label}>Особенности:</div>

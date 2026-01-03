@@ -12,12 +12,12 @@
     }
 }
 
-@media only screen and (max-width: 1000px) {
+/* @media only screen and (max-width: 1000px) {
     .containerBorders {
         padding-left: 5.33333vw;
         padding-right: 5.33333vw;
     }
-}
+} */
 
 .page {
   padding-top: 100px;
@@ -26,6 +26,8 @@
 @media (max-width: 1000px) {
   .page {
     padding-top: 54px;
+    max-width: 800px;
+    padding: 30px 50px;
   }
 }
 
