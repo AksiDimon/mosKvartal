@@ -29,11 +29,11 @@ const BuyTerms = () => (
       id="component-similar-flats"
     ></div>
     <div className={styles['object-buy-info']}>
-      <div className="container">
+      <div className={styles['container-info']}>
         <div className={styles.text}>
           Получить информацию по покупке недвижимости
         </div>
-        <a href="tel:+7 (495) 651-07-75" className="phone">
+        <a className={styles.phone} href="tel:+7 (495) 651-07-75">
           +7 (495) 651-07-75
         </a>
       </div>

@@ -16,13 +16,17 @@ const Page = () => {
 
       <main className={`${styles.page} uk-overflow-hidden open_obj_page`}>
         <Breadcrumbs />
-        <div className={`${styles['page-title']} uk-container uk-container-xlarge`}>
-          <h1>3-я Прядильная ул., влд. 4</h1>
-        </div>
+        <div className={styles.containerBorders}>
+          <div
+            className={`${styles['page-title']} uk-container uk-container-xlarge`}
+          >
+            <h1>3-я Прядильная ул., влд. 4</h1>
+          </div>
 
-        <FlatCard />
-        <BuyFinish />
-        <BuyTerms />
+          <FlatCard />
+          <BuyFinish />
+          <BuyTerms />
+        </div>
 
         <div className={styles['scroll-helper']}></div>
       </main>

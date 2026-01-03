@@ -1,3 +1,24 @@
+
+.containerBorders{
+      max-width: 1720px;
+    margin: auto;
+    padding-left: 0;
+    padding-right: 0;
+}
+@media only screen and (max-width: 1920px) and (min-width: 1001px) {
+    .containerBorders {
+        max-width: 89.5833vw;
+        margin: auto;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .containerBorders {
+        padding-left: 5.33333vw;
+        padding-right: 5.33333vw;
+    }
+}
+
 .page {
   padding-top: 100px;
 }

@@ -1274,81 +1274,27 @@
   margin: 50px 0 0 0;
 }
 
-.object-buy-info {
-  margin: 100px 0;
+.object-buy-info{
+    text-align: center;
+  color: #4D4F53;
+  font-size: 36px;
+ font-weight: 500;
 }
 
-@media print {
-  .object-buy-info {
-    margin: 20px 0;
+@media(max-width: 1000px) {
+  .object-buy-info{
+    font-size: 6.4vw;
   }
 }
-
-.object-buy-info > .container {
-  width: 100%;
-  max-width: 1720px;
-  margin: 0 auto;
+.container-info{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
+  gap: 40px;
+  margin-bottom: 80px;
 }
 
-@media (max-width: 1920px) {
-  .object-buy-info > .container {
-    max-width: calc(100% - 10.4166666667vw);
-  }
-}
-
-@media print {
-  .object-buy-info > .container {
-    gap: 20px;
-  }
-}
-
-.text {
-}
-
-.object-buy-info > .container > .text {
-  text-align: center;
-  color: #4d4f53;
-  font-size: 36px;
-  font-weight: bold;
-}
-
-@media (max-width: 1000px) {
-  .object-buy-info > .container > .text {
-    font-size: 6.4vw;
-  }
-}
-
-@media print {
-  .object-buy-info > .container > .text {
-    font-size: 20px;
-  }
-}
-
-.object-buy-info > .container > a {
-  color: #cc0605;
-  font-size: 36px;
-  font-weight: bold;
-}
-
-@media (max-width: 1000px) {
-  .object-buy-info > .container > a {
-    font-size: 6.4vw;
-  }
-}
-
-@media print {
-  .object-buy-info > .container > a {
-    font-size: 20px;
-  }
-}
-
-.object-buy-info > .container > a:hover {
-  color: #cc0605;
+.phone{
+  color: #CC0605;
   text-decoration: none;
 }
 
