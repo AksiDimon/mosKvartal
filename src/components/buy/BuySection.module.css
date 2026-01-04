@@ -650,16 +650,6 @@
   display: block;
 }
 
-/* .buy_how__val > div:not(:first-child) {
-  display: none;
-} */
-
-/* .buttonDetails{
-  border: 1px solid #CC0605;
-  border-radius: calc(10 / 1920 * 100vw);
-  padding: 10px 14px;
-  display: inline-block;
-} */
 @media only screen and (max-width: 1920px) and (min-width: 1001px) {
   .buy_how__val {
     font-size: calc(24 / 1920 * 100vw);
@@ -1254,9 +1244,6 @@
   width: 840px;
   min-width: 840px;
   height: 420px;
-  /* border-radius: 0px;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px; */
   border-radius: 20px;
   box-sizing: border-box;
 }

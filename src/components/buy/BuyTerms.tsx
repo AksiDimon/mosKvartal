@@ -3,45 +3,39 @@ import { useScrollReveal } from '../../hooks/useScrollReveal';
 import BuyHowDigits from './BuyHowDigits';
 import styles from './BuySection.module.css';
 import styleD from './digits.module.css';
+import { IframeComponent } from './IframeComponent';
 
-const BuyTerms = () => (
-  <>
-    <div
-      className={`${styles.no_det_print} ${styles.buy_terms} uk-container-xlarge ${styles['-no_auction']}`}
-      id="object-usloviya-pokupki"
-    >
-      <BuyTermsTop />
+const BuyTerms = () => {
+  return (
+    <>
+      <div
+        className={`${styles.no_det_print} ${styles.buy_terms} uk-container-xlarge ${styles['-no_auction']}`}
+        id="object-usloviya-pokupki"
+      >
+        <BuyTermsTop />
 
-      <div className={styles['iframe-ipoteka-domclick']}>
-        <iframe
-          id="calculator-iframe"
-          src="https://ipoteka.domclick.ru/calc-reg/calculator.html?excludedSubproductIds=7&excludedSubproductIds=33&excludedSubproductIds=34&excludeMaternalFund=true"
-          frameBorder="no"
-          scrolling="no"
-          width="100%"
-          height="1200"
-        ></iframe>
+        <IframeComponent />
+
+        <BuyHowDigits />
       </div>
 
-      <BuyHowDigits />
-    </div>
-
-    <div
-      className={`component-similar-flats ${styles.no_det_print}`}
-      id="component-similar-flats"
-    ></div>
-    <div className={styles['object-buy-info']}>
-      <div className={styles['container-info']}>
-        <div className={styles.text}>
-          Получить информацию по покупке недвижимости
+      <div
+        className={`component-similar-flats ${styles.no_det_print}`}
+        id="component-similar-flats"
+      ></div>
+      <div className={styles['object-buy-info']}>
+        <div className={styles['container-info']}>
+          <div className={styles.text}>
+            Получить информацию по покупке недвижимости
+          </div>
+          <a className={styles.phone} href="tel:+7 (495) 651-07-75">
+            +7 (495) 651-07-75
+          </a>
         </div>
-        <a className={styles.phone} href="tel:+7 (495) 651-07-75">
-          +7 (495) 651-07-75
-        </a>
       </div>
-    </div>
-  </>
-);
+    </>
+  );
+};
 
 const BuyTermsTop = () => {
   const { ref, isRevealed } = useScrollReveal<HTMLDivElement>();

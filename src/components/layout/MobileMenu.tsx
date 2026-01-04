@@ -2,8 +2,6 @@
 import styles from './MobileMenu.module.css';
 /* eslint-disable @next/next/no-img-element */
 
-// import styles from './MobileMenu.module.css';
-
 type MobileMenuProps = {
   isOpen: boolean;
   onClose: () => void;

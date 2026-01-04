@@ -19,14 +19,6 @@ margin-left: auto;
 }
 
 @media (max-width: 1000px) {
-  /* .grid { grid-template-columns: 1fr; }
-  .mediaViewport { min-height: 240px; }
-  .title { font-size: 22px; }
-  .action { display: none;}
-  .printer {
-    width: 14px;
-    height: 14px;
-  } */
   .breadcrumbs{
     display: none;
   }

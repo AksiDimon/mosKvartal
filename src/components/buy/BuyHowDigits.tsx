@@ -50,7 +50,6 @@ const BuyHowDigits = () => {
     setPhase('prep');
   };
 
-  // старт анимации “в следующий кадр”, чтобы transition отработал
   useEffect(() => {
     if (phase !== 'prep') return;
 
