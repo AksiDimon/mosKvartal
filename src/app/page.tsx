@@ -1,6 +1,7 @@
 import BuyFinish from '../components/buy/BuyFinish';
 import BuyTerms from '../components/buy/BuyTerms';
 import Breadcrumbs from '../components/common/Breadcrumbs';
+import ScrollTopButton from '../components/common/ScrollTopButton';
 import FlatCard from '../components/flat/FlatCard';
 import Footer from '../components/layout/Footer';
 import Header from '../components/layout/Header';
@@ -33,11 +34,7 @@ const Page = () => {
 
       <Footer />
 
-      <div className="scroll-top-button hidden-block" id="js-scroll-top">
-        <div className={styles['icon-wrapper']}>
-          <img src="/assets/icon-scroll.svg" alt="icon-wrapper" />
-        </div>
-      </div>
+      <ScrollTopButton />
     </>
   );
 };

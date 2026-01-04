@@ -44,7 +44,7 @@ export default function Header() {
             <button
               type="button"
               className={styles.likeButton}
-              onClick={() => setLikes((prev) => (prev ? 0 : 1))}
+              // onClick={() => setLikes((prev) => (prev ? 0 : 1))}
               aria-label={
                 likes ? 'Убрать из избранного' : 'Добавить в избранное'
               }
