@@ -14,6 +14,11 @@
   visibility: hidden;
 }
 
+.mobile-menu.open {
+  opacity: 1;
+  visibility: visible;
+}
+
 .mobile-menu > .mobile-menu__in {
   display: flex;
   flex-direction: column;
@@ -24,11 +29,18 @@
 .mobile-menu > .mobile-menu__in > .mobile-menu__close {
   display: flex;
   justify-content: flex-end;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: auto;
+  cursor: pointer;
 }
 
 .mobile-menu > .mobile-menu__in > .menu__item {
   font-size: 24px;
   font-weight: 700;
+  text-decoration: none;
+  color: #4d4f53;
 }
 
 .mobile-menu > .mobile-menu__in > .menu__item:hover {

@@ -1,11 +1,28 @@
+'use client';
 import styles from './MobileMenu.module.css';
+/* eslint-disable @next/next/no-img-element */
 
-const MobileMenu = () => (
-  <div className={styles['mobile-menu']}>
+// import styles from './MobileMenu.module.css';
+
+type MobileMenuProps = {
+  isOpen: boolean;
+  onClose: () => void;
+};
+
+const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => (
+  <div
+    className={`${styles['mobile-menu']} ${isOpen ? styles.open : ''}`}
+    aria-hidden={!isOpen}
+  >
     <div className={styles['mobile-menu__in']}>
-      <div className={styles['mobile-menu__close']}>
-        <img src="../assets/menu_close.svg" alt="menu_close.svg" />
-      </div>
+      <button
+        className={styles['mobile-menu__close']}
+        type="button"
+        aria-label="Закрыть меню"
+        onClick={onClose}
+      >
+        <img src="/assets/menu_close.svg" alt="Закрыть меню" />
+      </button>
       <a className={styles['menu__item']} href="/o-moskovskikh-kvartalakh/">
         О «Московских кварталах»
       </a>

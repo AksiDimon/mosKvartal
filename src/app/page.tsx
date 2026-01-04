@@ -5,14 +5,12 @@ import ScrollTopButton from '../components/common/ScrollTopButton';
 import FlatCard from '../components/flat/FlatCard';
 import Footer from '../components/layout/Footer';
 import Header from '../components/layout/Header';
-import MobileMenu from '../components/layout/MobileMenu';
 import styles from './page.module.css';
 
 const Page = () => {
   return (
     <>
       <div id="panel"></div>
-      <MobileMenu />
       <Header />
 
       <main className={`${styles.page} uk-overflow-hidden open_obj_page`}>
