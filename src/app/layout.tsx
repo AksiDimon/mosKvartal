@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
 import { Montserrat } from 'next/font/google';
+import { Providers } from './providers';
 
 const montserrat = Montserrat({
   subsets: ['latin', 'cyrillic'],
@@ -81,7 +82,7 @@ export default function RootLayout({
         // className="renova no-left-margin detail_page"
         className={montserrat.className}
       >
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

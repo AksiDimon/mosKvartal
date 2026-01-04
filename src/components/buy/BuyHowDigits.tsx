@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useMemo, useState } from 'react';
 import styles from './BuySection.module.css';
 import styleD from './digits.module.css';
-import { useScrollReveal } from '@/hooks/useScrollReveal'; // как у тебя
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const STEPS = [
   { id: 1, title: 'Выбор и осмотр объекта' },
@@ -19,6 +19,7 @@ const STEPS = [
 
 type StepId = (typeof STEPS)[number]['id'];
 type SlidePhase = 'idle' | 'prep' | 'run';
+type SlideDirection = 'up' | 'down';
 
 const BuyHowDigits = () => {
   const { ref, isRevealed } = useScrollReveal<HTMLDivElement>();
@@ -26,6 +27,7 @@ const BuyHowDigits = () => {
   const [activeId, setActiveId] = useState<StepId>(1);
   const [prevId, setPrevId] = useState<StepId | null>(null);
   const [phase, setPhase] = useState<SlidePhase>('idle');
+  const [direction, setDirection] = useState<SlideDirection>('down');
 
   const byId = useMemo(() => {
     const map = new Map<number, string>();
@@ -34,7 +36,9 @@ const BuyHowDigits = () => {
   }, []);
 
   const selectStep = (id: StepId) => {
+    if (phase !== 'idle') return;
     if (id === activeId) return;
+    setDirection(id > activeId ? 'up' : 'down');
     setPrevId(activeId);
     setActiveId(id);
     setPhase('prep');
@@ -45,19 +49,32 @@ const BuyHowDigits = () => {
     if (phase !== 'prep') return;
 
     const raf = requestAnimationFrame(() => setPhase('run'));
+    return () => cancelAnimationFrame(raf);
+  }, [phase]);
+
+  // завершение анимации и сброс предыдущего шага
+  useEffect(() => {
+    if (phase !== 'run') return;
+
     const t = window.setTimeout(() => {
       setPrevId(null);
       setPhase('idle');
-    }, 320); // длительность должна совпадать с CSS (см. ниже)
+    }, 320);
 
-    return () => {
-      cancelAnimationFrame(raf);
-      clearTimeout(t);
-    };
+    return () => clearTimeout(t);
   }, [phase]);
 
   const currentTitle = byId.get(activeId) ?? '';
   const prevTitle = prevId ? byId.get(prevId) ?? '' : '';
+
+  const slideCls =
+    phase === 'prep'
+      ? styleD.stepSlidePrep
+      : phase === 'run'
+      ? styleD.stepSlideRun
+      : '';
+  const dirCls =
+    direction === 'up' ? styleD.stepSlideDirUp : styleD.stepSlideDirDown;
 
   return (
     <div
@@ -86,13 +103,15 @@ const BuyHowDigits = () => {
                   }
                 }}
                 data-id={s.id}
-              className={[
-                styleD.buy_how__dig,
-                s.id === activeId ? styleD.active : '',
-                s.withComment ? styleD['with-comment'] : '',
-              ].join(' ')}
+                className={[
+                  styleD.buy_how__dig,
+                  s.id === activeId ? styleD.active : '',
+                  s.withComment ? styleD['with-comment'] : '',
+                ].join(' ')}
               >
-                <span className={styleD.titleRed}>{s.title.replace(' *', '')}</span>
+                <span className={styleD.titleRed}>
+                  {s.title.replace(' *', '')}
+                </span>
               </div>
 
               {idx < STEPS.length - 1 && (
@@ -104,24 +123,29 @@ const BuyHowDigits = () => {
 
         {/* STEPS */}
         <div className={styles.buy_how__steps}>
-          <div>
+          <div className={styles.stepDescription}>
             <div className={styles.buy_how__step}>
               Шаг{' '}
               <span
-                className={[
-                  styles.stepSlideViewportNum,
-                  phase === 'run' ? styles.stepSlideRun : '',
-                ].join(' ')}
+                className={[styleD.stepSlideViewportNum, slideCls, dirCls].join(
+                  ' '
+                )}
               >
-                {/* {prevId !== null && (
+                {prevId !== null && (
                   <span
-                    className={`${styles.stepSlideItem} ${styles.stepSlidePrev}`}
+                    className={`${styleD.stepSlideItem} ${styleD.stepSlidePrev}`}
                   >
                     {prevId}
                   </span>
-                )} */}
+                )}
+
                 <span
-                  className={`${styles.stepSlideItem} ${styles.stepSlideCurrent}`}
+                  className={`${styleD.stepSlideItem} ${styleD.stepSlideCurrent}`}
+                  style={{
+                    fontWeight: '100',
+                    color: '#949598',
+                    transform: 'translateY(15%)',
+                  }}
                 >
                   {activeId}
                 </span>
@@ -130,20 +154,20 @@ const BuyHowDigits = () => {
 
             <div className={styles.buy_how__val}>
               <div
-              className={[
-                styles.stepSlideViewportVal,
-                phase === 'run' ? styles.stepSlideRun : '',
-              ].join(' ')}
-            >
-                {/* {prevId !== null && (
+                className={[styleD.stepSlideViewportVal, slideCls, dirCls].join(
+                  ' '
+                )}
+              >
+                {prevId !== null && (
                   <div
-                    className={`${styles.stepSlideItem} ${styles.stepSlidePrev}`}
+                    className={`${styleD.stepSlideItem} ${styleD.stepSlidePrev} ${styleD.titleRed}`}
                   >
                     {prevTitle}
                   </div>
-                )} */}
+                )}
+
                 <div
-                  className={`${styles.stepSlideItem} ${styles.stepSlideCurrent} ${styleD.titleRed}`}
+                  className={`${styleD.stepSlideItem} ${styleD.stepSlideCurrent} ${styleD.titleRed}`}
                 >
                   {currentTitle}
                 </div>

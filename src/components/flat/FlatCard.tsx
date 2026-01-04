@@ -1,12 +1,15 @@
 'use client';
 
 import Image from 'next/image';
-import { MouseEvent, useMemo, useState } from 'react';
+import { MouseEvent, useEffect, useMemo, useState } from 'react';
 import pageStyles from '../../app/page.module.css';
 import styles from './FlatCard.module.css';
 import { printPage, scrollToElement } from '../../lib/dom';
+import { Heart } from '../icons/Heart';
+import { useLikes } from '@/contexts/LikeContext';
 
 const FlatCard = () => {
+  const { setLikes } = useLikes();
   const mediaOptions = useMemo(
     () => [
       {
@@ -29,7 +32,8 @@ const FlatCard = () => {
   );
   const [activeKey, setActiveKey] = useState(mediaOptions[0].key);
   const [discountApplied, setDiscountApplied] = useState(false);
-
+  const [liked, setLiked] = useState(false);
+  const [likeHover, setLikeHover] = useState(false);
   const activeMedia =
     mediaOptions.find((option) => option.key === activeKey) ?? mediaOptions[0];
 
@@ -37,6 +41,25 @@ const FlatCard = () => {
     event.preventDefault();
     scrollToElement('calculator-iframe');
   };
+
+  const handleLikeToggle = () => {
+    setLiked((prev) => !prev);
+  };
+
+  useEffect(() => {
+    setLikes(liked ? 1 : 0);
+  }, [liked, setLikes]);
+
+  const heartColors = useMemo(() => {
+    if (liked) {
+      return likeHover
+        ? { fill: '#4D4F53', stroke: '#4D4F53' }
+        : { fill: '#E90002', stroke: '#E90002' };
+    }
+    return likeHover
+      ? { fill: 'none', stroke: '#4D4F53' }
+      : { fill: 'none', stroke: '#E90002' };
+  }, [liked, likeHover]);
 
   return (
     <>
@@ -65,7 +88,11 @@ const FlatCard = () => {
                     activeKey === 'plan' ? 'reserve' : ''
                   }`}
                 >
-                  <img src={activeMedia.src} alt={activeMedia.label} title="plan" />
+                  <img
+                    src={activeMedia.src}
+                    alt={activeMedia.label}
+                    title="plan"
+                  />
                   {activeKey === 'plan' && (
                     <div className={styles['icon-lock']}>
                       <img src="../assets/lock.svg" alt="lock.svg" />
@@ -115,7 +142,19 @@ const FlatCard = () => {
                 className={`js-det-fav-but ${styles.title_but} ${styles['-fav']}`}
                 data-id="92793"
               >
-                <i></i>
+                {/* <i></i> */}
+                <button
+                  type="button"
+                  className={styles.likeButton}
+                  onClick={handleLikeToggle}
+                  onMouseEnter={() => setLikeHover(true)}
+                  onMouseLeave={() => setLikeHover(false)}
+                  aria-label={
+                    liked ? 'Убрать из избранного' : 'Добавить в избранное'
+                  }
+                >
+                  <Heart fill={heartColors.fill} stroke={heartColors.stroke} />
+                </button>
               </div>
             </div>
             <div className={styles.name}>
@@ -197,47 +236,49 @@ const FlatCard = () => {
               <span>212926</span>
             </div>
             <div className={styles.det_bl_l_pr_flex}>
-            <div className={styles.priceBlock}>
-              <div className={styles.left}>
-                <div className={styles.price}>
-                  {discountApplied ? '12 720 932 ₽' : '13 896 619 ₽'}
-                </div>
-                <div className={styles.priceSub}>
-                  {discountApplied ? '322 867 ₽/м²' : '352 706 ₽/м²'}
-                </div>
-              </div>
-              <div className={styles.right}>
-                <div className={styles.saleRow}>
-                  <span className={styles.saleLabel}>
-                    {discountApplied ? 'Скидка применена:' : 'Акция:'}
-                  </span>
-                  <strong className={styles.saleValue}>
-                    {discountApplied ? '8.46%' : 'Скидка 8.46%'}
-                  </strong>
-                </div>
-
-                <label className={styles.discountToggle}>
-                  <input
-                    type="checkbox"
-                    checked={discountApplied}
-                    onChange={() => setDiscountApplied((v) => !v)}
-                  />
-                  <span
-                    className={`${styles.toggleSlider} ${
-                      discountApplied ? styles.toggleSliderActive : ''
-                    }`}
-                    aria-hidden
-                  />
-                  <span className={styles.toggleLabel}>Рассчитать скидку</span>
-                </label>
-                {discountApplied && (
-                  <div className={styles.discountNote}>
-                    Скидка действительна при <br />
-                    100% оплате и ипотеке
+              <div className={styles.priceBlock}>
+                <div className={styles.left}>
+                  <div className={styles.price}>
+                    {discountApplied ? '12 720 932 ₽' : '13 896 619 ₽'}
                   </div>
-                )}
+                  <div className={styles.priceSub}>
+                    {discountApplied ? '322 867 ₽/м²' : '352 706 ₽/м²'}
+                  </div>
+                </div>
+                <div className={styles.right}>
+                  <div className={styles.saleRow}>
+                    <span className={styles.saleLabel}>
+                      {discountApplied ? 'Скидка применена:' : 'Акция:'}
+                    </span>
+                    <strong className={styles.saleValue}>
+                      {discountApplied ? '8.46%' : 'Скидка 8.46%'}
+                    </strong>
+                  </div>
+
+                  <label className={styles.discountToggle}>
+                    <input
+                      type="checkbox"
+                      checked={discountApplied}
+                      onChange={() => setDiscountApplied((v) => !v)}
+                    />
+                    <span
+                      className={`${styles.toggleSlider} ${
+                        discountApplied ? styles.toggleSliderActive : ''
+                      }`}
+                      aria-hidden
+                    />
+                    <span className={styles.toggleLabel}>
+                      Рассчитать скидку
+                    </span>
+                  </label>
+                  {discountApplied && (
+                    <div className={styles.discountNote}>
+                      Скидка действительна при <br />
+                      100% оплате и ипотеке
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
             </div>
             <div className={`no_det_print ${styles.det_bl_buy__btns}`}>
               <a
@@ -390,7 +431,11 @@ const FlatCard = () => {
                   activeKey === 'plan' ? 'reserve' : ''
                 }`}
               >
-                <img src={activeMedia.src} alt={activeMedia.label} title="plan" />
+                <img
+                  src={activeMedia.src}
+                  alt={activeMedia.label}
+                  title="plan"
+                />
                 {activeKey === 'plan' && (
                   <div className={styles['icon-lock']}>
                     <img src="../assets/lock.svg" alt="lock.svg" />

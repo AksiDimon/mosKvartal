@@ -199,54 +199,103 @@
 }
 
 
-
-
-
-/* ====== SLIDE (old goes up, new comes from bottom) ====== */
-
+.stepSlidePrep {}
 .stepSlideRun {}
 
-.stepSlideItem {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  transform: translateY(0);
-  transition: transform 320ms ease;
-  will-change: transform;
-}
-
-
-.stepSlidePrev {
-  transform: translateY(0);
-}
-
-.stepSlideCurrent {
-  transform: translateY(100%);
-}
-
-.stepSlideRun .stepSlidePrev {
-  transform: translateY(-100%);
-}
-
-.stepSlideRun .stepSlideCurrent {
-  transform: translateY(0);
-}
-
+/* ===== SLIDE "cards swap": fade + move ===== */
 
 .stepSlideViewportVal {
   position: relative;
   overflow: hidden;
-
-  height: 1.15em;
+  height: 1.2em;
+  font-size: 48px;
+  letter-spacing: -1.44px;
+  line-height: 1.1;
 }
-
 
 .stepSlideViewportNum {
   position: relative;
   display: inline-block;
   overflow: hidden;
   height: 1em;
-  width: 2ch;        
+  width: 2ch;
   vertical-align: baseline;
+}
+
+.stepSlideItem {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  transition: transform 320ms ease, opacity 320ms ease;
+  will-change: transform, opacity;
+}
+
+.stepSlidePrev {
+  z-index: 1;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.stepSlideCurrent {
+  z-index: 2;
+}
+
+/* idle: current стоит на месте */
+.stepSlideCurrent {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* prep: готовим новый снизу + прозрачный */
+.stepSlidePrep .stepSlideCurrent {
+  transform: translateY(-100%);
+  opacity: 1;
+  background-color: #f5f5f5;
+}
+
+/* run: prev уходит вверх и исчезает */
+.stepSlideRun .stepSlidePrev {
+  transform: translateY(100%);
+  opacity: 1;
+  background-color: #f5f5f5;
+}
+
+/* run: current приезжает на место + проявляется */
+.stepSlideRun .stepSlideCurrent {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* направление вверх: новый сверху, старый вниз */
+.stepSlideDirUp.stepSlidePrep .stepSlideCurrent {
+  transform: translateY(-100%);
+    opacity: 1;
+  background-color: #f5f5f5;
+}
+
+.stepSlideDirUp.stepSlideRun .stepSlidePrev {
+  transform: translateY(100%);
+    opacity: 1;
+  background-color: #f5f5f5;
+}
+
+/* направление вниз: новый снизу, старый вверх */
+.stepSlideDirDown.stepSlidePrep .stepSlideCurrent {
+  transform: translateY(100%);
+    opacity: 1;
+  background-color: #f5f5f5;
+}
+
+.stepSlideDirDown.stepSlideRun .stepSlidePrev {
+  transform: translateY(-100%);
+    opacity: 1;
+  background-color: #f5f5f5;
+}
+
+@media only screen and (max-width: 1920px) and (min-width: 1001px) {
+  .stepSlideViewportVal {
+    font-size: calc(48 / 1920 * 100vw);
+    letter-spacing: calc(-1.44 / 1920 * 100vw);
+  }
 }

@@ -601,7 +601,6 @@
   flex-direction: column;
   gap: 90px;
   width: 100%;
- 
 }
 
 @media only screen and (max-width: 1000px) {
@@ -609,6 +608,17 @@
     flex-direction: column;
     align-items: flex-start;
     gap: calc(16 / 375 * 100vw);
+  }
+}
+
+.stepDescription {
+  display: grid;
+  gap: 12px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .stepDescription {
+    display: none;
   }
 }
 
