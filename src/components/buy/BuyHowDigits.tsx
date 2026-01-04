@@ -3,7 +3,13 @@ import styles from './BuySection.module.css';
 import styleD from './digits.module.css';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
-const STEPS = [
+type Step = {
+  id: number;
+  title: string;
+  withComment?: boolean;
+};
+
+const STEPS: Step[] = [
   { id: 1, title: 'Выбор и осмотр объекта' },
   { id: 2, title: 'Одобрение в\u00A0банке' },
   { id: 3, title: 'Оформление ЭЦП *', withComment: true },
