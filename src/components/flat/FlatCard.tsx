@@ -146,6 +146,7 @@ const FlatCard = () => {
                 <button
                   type="button"
                   className={styles.likeButton}
+                  style={{ background: 'none' }}
                   onClick={handleLikeToggle}
                   onMouseEnter={() => setLikeHover(true)}
                   onMouseLeave={() => setLikeHover(false)}
@@ -320,7 +321,20 @@ const FlatCard = () => {
               className={`js-det-fav-but ${styles.title_but} ${styles['-fav']}`}
               data-id="92793"
             >
-              <i></i>
+              {/* <i></i> */}
+              <button
+                style={{ background: 'none' }}
+                type="button"
+                className={styles.likeButton}
+                onClick={handleLikeToggle}
+                onMouseEnter={() => setLikeHover(true)}
+                onMouseLeave={() => setLikeHover(false)}
+                aria-label={
+                  liked ? 'Убрать из избранного' : 'Добавить в избранное'
+                }
+              >
+                <Heart fill={heartColors.fill} stroke={heartColors.stroke} />
+              </button>
             </div>
           </div>
           <div className={styles.name}>

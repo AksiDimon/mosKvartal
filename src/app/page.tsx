@@ -19,7 +19,7 @@ const Page = () => {
           <div
             className={`${styles['page-title']} uk-container uk-container-xlarge`}
           >
-            <h1>3-я Прядильная ул., влд. 4</h1>
+            <h1 className={styles.headerFlat}>3-я Прядильная ул., влд. 4</h1>
           </div>
 
           <FlatCard />
