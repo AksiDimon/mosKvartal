@@ -47,6 +47,10 @@
   }
 }
 
+.likeButton{
+  cursor: pointer;
+}
+
 .title_but i:before,
 .title_but i:after {
   content: '';
