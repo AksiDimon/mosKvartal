@@ -1086,13 +1086,14 @@
 
 @media only screen and (max-width: 1920px) and (min-width: 1001px) {
   .buy_finish__main-text-wrap .buy_finish__main-text-tl {
-    font-size: calc(36 / 1920 * 100vw);
+    /* font-size: calc(36 / 1920 * 100vw); */
+    font-size: 20px;
   }
 }
 
 @media only screen and (max-width: 1000px) {
   .buy_finish__main-text-wrap .buy_finish__main-text-tl {
-    font-size: calc(18 / 375 * 100vw);
+    font-size: calc(12 / 375 * 100vw);
     letter-spacing: -1.08px;
   }
 }
