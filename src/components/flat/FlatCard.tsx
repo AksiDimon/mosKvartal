@@ -120,7 +120,7 @@ const FlatCard = () => {
                       height={10}
                     />
                   )}
-                  <span>{option.label}</span>
+                  <span> &nbsp;{option.label}</span>
                 </button>
               ))}
             </div>

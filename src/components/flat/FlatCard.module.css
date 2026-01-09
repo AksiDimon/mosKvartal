@@ -912,7 +912,8 @@
   align-items: flex-start;
   gap: 14px;
   padding-top: 6px;
-  min-width: 260px;
+  /* min-width: 260px; */
+  min-width: 170px;
 }
 
 .saleRow {
