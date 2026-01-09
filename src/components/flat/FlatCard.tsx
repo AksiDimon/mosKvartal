@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+import NextImage from 'next/image';
 import { MouseEvent, useEffect, useMemo, useState } from 'react';
 import pageStyles from '../../app/page.module.css';
 import styles from './FlatCard.module.css';
@@ -50,6 +50,14 @@ const FlatCard = () => {
     setLikes(liked ? 1 : 0);
   }, [liked, setLikes]);
 
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.Image) return;
+    mediaOptions.forEach(({ src }) => {
+      const img = new window.Image();
+      img.src = src;
+    });
+  }, [mediaOptions]);
+
   const heartColors = useMemo(() => {
     if (liked) {
       return likeHover
@@ -89,6 +97,7 @@ const FlatCard = () => {
                   }`}
                 >
                   <img
+                    key={activeMedia.key}
                     src={activeMedia.src}
                     alt={activeMedia.label}
                     title="plan"
@@ -112,7 +121,7 @@ const FlatCard = () => {
                   onClick={() => setActiveKey(option.key)}
                 >
                   {activeKey === option.key && (
-                    <Image
+                    <NextImage
                       className={styles.tabIcon}
                       src="/assets/check-white.svg"
                       alt=""
@@ -446,6 +455,7 @@ const FlatCard = () => {
                 }`}
               >
                 <img
+                  key={`${activeMedia.key}-mobile`}
                   src={activeMedia.src}
                   alt={activeMedia.label}
                   title="plan"
@@ -468,6 +478,15 @@ const FlatCard = () => {
                 }`}
                 onClick={() => setActiveKey(option.key)}
               >
+                {activeKey === option.key && (
+                  <NextImage
+                    className={styles.tabIcon}
+                    src="/assets/check-white.svg"
+                    alt=""
+                    width={15}
+                    height={10}
+                  />
+                )}
                 <span>{option.label}</span>
               </button>
             ))}
