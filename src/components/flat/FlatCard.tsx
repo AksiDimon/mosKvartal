@@ -1,13 +1,7 @@
 'use client';
 
 import NextImage from 'next/image';
-import {
-  MouseEvent,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import { MouseEvent, useEffect, useMemo, useState } from 'react';
 import pageStyles from '../../app/page.module.css';
 import styles from './FlatCard.module.css';
 import { printPage, scrollToElement } from '../../lib/dom';
@@ -36,17 +30,12 @@ const FlatCard = () => {
     ],
     []
   );
-  const [selectedKey, setSelectedKey] = useState(mediaOptions[0].key);
-  const [visibleKey, setVisibleKey] = useState(mediaOptions[0].key);
-  const [loadedMap, setLoadedMap] = useState<Record<string, boolean>>({
-    [mediaOptions[0].key]: true,
-  });
-  const [isImageLoading, setIsImageLoading] = useState(false);
+  const [activeKey, setActiveKey] = useState(mediaOptions[0].key);
   const [discountApplied, setDiscountApplied] = useState(false);
   const [liked, setLiked] = useState(false);
   const [likeHover, setLikeHover] = useState(false);
-  const visibleMedia =
-    mediaOptions.find((option) => option.key === visibleKey) ?? mediaOptions[0];
+  const activeMedia =
+    mediaOptions.find((option) => option.key === activeKey) ?? mediaOptions[0];
 
   const handleScrollClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
@@ -61,58 +50,13 @@ const FlatCard = () => {
     setLikes(liked ? 1 : 0);
   }, [liked, setLikes]);
 
-  const preloadImage = useCallback(
-    (key: string, src: string) => {
-      if (loadedMap[key]) {
-        return Promise.resolve();
-      }
-
-      if (typeof window === 'undefined' || !window.Image) {
-        return Promise.resolve();
-      }
-
-      return new Promise<void>((resolve) => {
-        const img = new window.Image();
-        img.onload = () => resolve();
-        img.onerror = () => resolve();
-        img.src = src;
-        if (img.decode) {
-          img.decode().then(resolve).catch(() => resolve());
-        }
-      });
-    },
-    [loadedMap]
-  );
-
   useEffect(() => {
-    mediaOptions.forEach((option) => {
-      preloadImage(option.key, option.src).then(() => {
-        setLoadedMap((prev) =>
-          prev[option.key] ? prev : { ...prev, [option.key]: true }
-        );
-      });
+    if (typeof window === 'undefined' || !window.Image) return;
+    mediaOptions.forEach(({ src }) => {
+      const img = new window.Image();
+      img.src = src;
     });
-  }, [mediaOptions, preloadImage]);
-
-  const handleTabChange = (key: string) => {
-    setSelectedKey(key);
-    const option = mediaOptions.find((item) => item.key === key);
-    if (!option) return;
-
-    const showImage = () => {
-      setVisibleKey(key);
-      setLoadedMap((prev) => ({ ...prev, [key]: true }));
-      setIsImageLoading(false);
-    };
-
-    if (loadedMap[key]) {
-      showImage();
-      return;
-    }
-
-    setIsImageLoading(true);
-    preloadImage(key, option.src).then(showImage);
-  };
+  }, [mediaOptions]);
 
   const heartColors = useMemo(() => {
     if (liked) {
@@ -149,23 +93,16 @@ const FlatCard = () => {
               <div className={styles.det_bl_tab_content}>
                 <div
                   className={`${styles.det_bl_plan} ${
-                    visibleKey === 'plan' ? 'reserve' : ''
+                    activeKey === 'plan' ? 'reserve' : ''
                   }`}
-                  aria-busy={isImageLoading}
                 >
                   <img
-                    key={visibleMedia.key}
-                    src={visibleMedia.src}
-                    alt={visibleMedia.label}
+                    key={activeMedia.key}
+                    src={activeMedia.src}
+                    alt={activeMedia.label}
                     title="plan"
-                    onLoad={() =>
-                      setLoadedMap((prev) => ({
-                        ...prev,
-                        [visibleMedia.key]: true,
-                      }))
-                    }
                   />
-                  {visibleKey === 'plan' && (
+                  {activeKey === 'plan' && (
                     <div className={styles['icon-lock']}>
                       <img src="../assets/lock.svg" alt="lock.svg" />
                     </div>
@@ -179,11 +116,11 @@ const FlatCard = () => {
                   key={option.key}
                   type="button"
                   className={`${styles.det_bl_tab} ${
-                    selectedKey === option.key ? styles.active : ''
+                    activeKey === option.key ? styles.active : ''
                   }`}
-                  onClick={() => handleTabChange(option.key)}
+                  onClick={() => setActiveKey(option.key)}
                 >
-                  {selectedKey === option.key && (
+                  {activeKey === option.key && (
                     <NextImage
                       className={styles.tabIcon}
                       src="/assets/check-white.svg"
@@ -510,32 +447,25 @@ const FlatCard = () => {
               )}
             </div>
           </div>
-          <div className={styles.det_bl_tab_contents}>
-            <div className={styles.det_bl_tab_content}>
-              <div
-                className={`${styles.det_bl_plan} ${
-                  visibleKey === 'plan' ? 'reserve' : ''
-                }`}
-                aria-busy={isImageLoading}
-              >
-                <img
-                  key={`${visibleMedia.key}-mobile`}
-                  src={visibleMedia.src}
-                  alt={visibleMedia.label}
-                  title="plan"
-                  onLoad={() =>
-                    setLoadedMap((prev) => ({
-                      ...prev,
-                      [visibleMedia.key]: true,
-                    }))
-                  }
-                />
-                {visibleKey === 'plan' && (
-                  <div className={styles['icon-lock']}>
-                    <img src="../assets/lock.svg" alt="lock.svg" />
-                  </div>
-                )}
-              </div>
+            <div className={styles.det_bl_tab_contents}>
+              <div className={styles.det_bl_tab_content}>
+                <div
+                  className={`${styles.det_bl_plan} ${
+                    activeKey === 'plan' ? 'reserve' : ''
+                  }`}
+                >
+                  <img
+                    key={`${activeMedia.key}-mobile`}
+                    src={activeMedia.src}
+                    alt={activeMedia.label}
+                    title="plan"
+                  />
+                  {activeKey === 'plan' && (
+                    <div className={styles['icon-lock']}>
+                      <img src="../assets/lock.svg" alt="lock.svg" />
+                    </div>
+                  )}
+                </div>
             </div>
           </div>
           <div className={styles.det_bl_tabs}>
@@ -544,11 +474,11 @@ const FlatCard = () => {
                 key={option.key}
                 type="button"
                 className={`${styles.det_bl_tab} ${
-                  selectedKey === option.key ? styles.active : ''
+                  activeKey === option.key ? styles.active : ''
                 }`}
-                onClick={() => handleTabChange(option.key)}
+                onClick={() => setActiveKey(option.key)}
               >
-                {selectedKey === option.key && (
+                {activeKey === option.key && (
                   <NextImage
                     className={styles.tabIcon}
                     src="/assets/check-white.svg"
