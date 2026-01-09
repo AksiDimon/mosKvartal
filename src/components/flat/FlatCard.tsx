@@ -480,19 +480,19 @@ const FlatCard = () => {
             </div>
           </div>
           <div className={styles.det_bl_l_p}>
-            <span>Ипотека:</span>
+            <span>Ипотека: &nbsp;</span>
             <span>Стандартная, семейная</span>
           </div>
           <div className={styles.det_bl_l_p}>
-            <span>Условия покупки:</span>
+            <span> Условия покупки: &nbsp;</span>
             <span>Забронировано</span>
           </div>
           <div className={styles.det_bl_l_p}>
-            <span>Доступно для бронирования:</span>
+            <span>Доступно для бронирования: &nbsp;</span>
             <span>до 15.02.2026</span>
           </div>
           <div className={styles.det_bl_l_p}>
-            <span>Артикул:</span>
+            <span>Артикул: &nbsp;</span>
             <span>212926</span>
           </div>
           <div className={`no_det_print ${styles.det_bl_buy__btns}`}>
